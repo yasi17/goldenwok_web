@@ -1,0 +1,6 @@
+{
+  "name": "金鼎 GoldenWok Chinese Restaurant",
+  "description": "Artisanal Chinese dining showcasing authentic Wok Hei, handcrafted dim sum, Peking duck, and signature wok specialties with online reservations and takeout ordering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
