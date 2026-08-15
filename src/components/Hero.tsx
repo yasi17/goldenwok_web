@@ -143,21 +143,27 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Cinematic Background with Atmospheric Layers */}
       <div className="absolute inset-0 z-0">
         {/* Mobile Background Image */}
-        <img
-          src="/images/f1.webp"
-          alt="GoldenWok Atmosphere Mobile"
-          className={`block sm:hidden w-full h-full object-cover object-center filter ${
-            isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
-          }`}
-        />
+        <picture>
+          <source srcSet="/images/f1.webp" type="image/webp" />
+          <img
+            src="/images/f1.jpg"
+            alt="GoldenWok Atmosphere Mobile"
+            className={`block sm:hidden w-full h-full object-cover object-center filter ${
+              isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
+            }`}
+          />
+        </picture>
         {/* Tablet & Desktop Background Image */}
-        <img
-          src="/images/food6.webp"
-          alt="GoldenWok Restaurant Exterior"
-          className={`hidden sm:block w-full h-full object-cover object-center scale-105 filter ${
-            isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
-          }`}
-        />
+        <picture>
+          <source srcSet="/images/food6.webp" type="image/webp" />
+          <img
+            src="/images/food6.jpg"
+            alt="GoldenWok Restaurant Exterior"
+            className={`hidden sm:block w-full h-full object-cover object-center scale-105 filter ${
+              isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
+            }`}
+          />
+        </picture>
         {/* Atmospheric overlays */}
         <div className={`absolute inset-0 bg-gradient-to-t ${
           isLight 
