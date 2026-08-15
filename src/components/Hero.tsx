@@ -680,20 +680,24 @@ export const Hero: React.FC<HeroProps> = ({
                   </div>
                 </div>
 
-                {/* Inquiry Phone Callout */}
-                <div className={`p-3 rounded border text-center text-xs ${
+                {/* Cancellation & Inquiries Notice */}
+                <div className={`p-3.5 rounded border text-center text-xs space-y-1.5 ${
                   isLight ? 'bg-[#FAF6F0] border-[#C8BCA8]' : 'bg-[#141414] border-[#2a2a2a]'
                 }`}>
-                  <p className="font-medium">
-                    {isGreek ? 'Αν έχετε οποιαδήποτε πληροφορία καλέστε στο ' : 'If you have any questions, please call '}
+                  <p className={`font-medium leading-relaxed ${isLight ? 'text-[#3D342C]' : 'text-[#e5e5e5]'}`}>
+                    {isGreek 
+                      ? 'Αν θέλετε να ακυρώσετε την κράτησή σας ή έχετε οποιαδήποτε απορία, παρακαλούμε να μας ενημερώσετε τηλεφωνικά:'
+                      : 'If you wish to cancel your reservation or have any questions, please notify us by phone:'}
+                  </p>
+                  <div>
                     <a 
                       href={`tel:${RESTAURANT_PHONE}`}
-                      className="font-bold text-[#B8860B] underline hover:brightness-110 ml-1 inline-flex items-center space-x-1"
+                      className="inline-flex items-center space-x-1.5 font-bold text-sm text-[#B8860B] hover:brightness-110 underline transition-all"
                     >
-                      <Phone className="w-3 h-3 inline mr-0.5" />
+                      <Phone className="w-3.5 h-3.5" />
                       <span>{RESTAURANT_PHONE_DISPLAY}</span>
                     </a>
-                  </p>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
