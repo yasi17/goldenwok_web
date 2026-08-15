@@ -132,8 +132,23 @@ export const Hero: React.FC<HeroProps> = ({
     sendReservationEmail(randomCode);
   };
 
+  const resetReservationForm = () => {
+    setGuestName('');
+    setGuestPhone('');
+    setSpecialRequests('');
+    setGuests(2);
+    setDate(todayStr);
+    setTime('13:30');
+    setIsConfirmed(false);
+    setConfirmationCode('');
+    setEmailSentStatus('idle');
+  };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    if (isConfirmed) {
+      resetReservationForm();
+    }
   };
 
   return (
@@ -646,22 +661,21 @@ export const Hero: React.FC<HeroProps> = ({
                   )}
                 </div>
 
-                {/* Email Dispatch Status Box */}
+                {/* Reservation Transmitted Status Box */}
                 <div className={`p-3.5 rounded border text-left flex items-start space-x-3 text-xs ${
                   isLight 
                     ? 'bg-[#B8860B]/10 border-[#B8860B]/30 text-[#2D241E]' 
                     : 'bg-[#d4af37]/10 border-[#d4af37]/30 text-[#f5f2eb]'
                 }`}>
-                  <Mail className="w-4 h-4 text-[#B8860B] shrink-0 mt-0.5" />
-                  <div className="space-y-1">
+                  <CheckCircle2 className="w-4 h-4 text-[#B8860B] shrink-0 mt-0.5" />
+                  <div className="space-y-0.5">
                     <p className="font-bold text-[#B8860B]">
-                      {isGreek ? 'Αποστολή στο Email: ' : 'Forwarded to Email: '}
-                      <span className="font-mono">{TARGET_EMAIL}</span>
+                      {isGreek ? 'Αυτόματη Ενημέρωση Εστιατορίου' : 'Restaurant Successfully Notified'}
                     </p>
-                    <p className="text-[11px] opacity-90">
+                    <p className="text-[11px] opacity-90 leading-relaxed">
                       {isGreek 
-                        ? 'Τα στοιχεία της κράτησης απεστάλησαν αυτόματα στη διεύθυνση του εστιατορίου.'
-                        : 'The reservation details have been automatically transmitted to the restaurant email.'}
+                        ? 'Τα στοιχεία της κράτησής σας καταχωρήθηκαν και απεστάλησαν αυτόματα στο εστιατόριο.'
+                        : 'Your reservation details have been confirmed and transmitted directly to the restaurant.'}
                     </p>
                   </div>
                 </div>
