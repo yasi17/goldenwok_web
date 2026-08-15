@@ -2,14 +2,6 @@ import { MenuItem, ReviewItem, GalleryPhoto, BanquetSpace } from '../types';
 import { CHINESE_MENU_ITEMS } from './chineseMenuData';
 import { JAPANESE_MENU_ITEMS } from './japaneseMenuData';
 
-import imgF19 from '../assets/images/f19.webp';
-import imgF18 from '../assets/images/f18.webp';
-import imgF22 from '../assets/images/f22.webp';
-import imgFood2 from '../assets/images/food2.webp';
-import imgFood6 from '../assets/images/food6.webp';
-import imgFood10 from '../assets/images/food10.webp';
-import imgFood13 from '../assets/images/food13.webp';
-
 export const RESTAURANT_INFO = {
   name: '金鼎 GoldenWok',
   tagline: 'Authentic Traditional Chinese & Japanese cuisine',
@@ -112,7 +104,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Authentic Asian Atmosphere & Flavors',
     titleEl: 'Αυθεντική Ασιατική Ατμόσφαιρα & Γεύσεις',
     category: 'ambiance',
-    imageUrl: imgF19,
+    imageUrl: 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=1400&q=85',
     caption: 'Authentic culinary moments and vibrant atmosphere at GoldenWok.',
     captionEl: 'Αυθεντικές γαστρονομικές στιγμές και ζεστή ατμόσφαιρα στο GoldenWok.'
   },
@@ -121,7 +113,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Exquisite Dining & Culinary Art',
     titleEl: 'Εκλεπτυσμένη Γαστρονομία & Πιάτα',
     category: 'dishes',
-    imageUrl: imgF18,
+    imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1400&q=85',
     caption: 'Artisanal dishes and refined flavors prepared with passion and precision.',
     captionEl: 'Χειροποίητα πιάτα και εκλεπτυσμένες γεύσεις φτιαγμένες με πάθος και ακρίβεια.'
   },
@@ -130,7 +122,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Warm Hospitality & Fine Ambiance',
     titleEl: 'Ζεστή Φιλοξενία & Εκλεπτυσμένος Χώρος',
     category: 'ambiance',
-    imageUrl: imgF22,
+    imageUrl: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1400&q=85',
     caption: 'Welcoming dining spaces crafted for memorable Asian culinary gatherings.',
     captionEl: 'Φιλόξενοι χώροι εστίασης σχεδιασμένοι για αξέχαστες γαστρονομικές στιγμές.'
   },
@@ -139,7 +131,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Signature Delicacies & Fresh Appetizers',
     titleEl: 'Σπεσιαλιτέ & Φρέσκα Ορεκτικά',
     category: 'dishes',
-    imageUrl: imgFood2,
+    imageUrl: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1400&q=85',
     caption: 'Freshly prepared Asian delicacies and appetizers served daily.',
     captionEl: 'Φρεσκομαγειρεμένα ασιατικά εδέσματα και ορεκτικά που ετοιμάζονται καθημερινά.'
   },
@@ -148,7 +140,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Master Dim Sum & Traditional Wok',
     titleEl: 'Χειροποίητο Dim Sum & Παραδοσιακό Wok',
     category: 'dishes',
-    imageUrl: imgFood6,
+    imageUrl: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=1400&q=85',
     caption: 'Crispy rolls, steamed dim sum, and rich flavors from our Asian kitchen.',
     captionEl: 'Τραγανά ρολά, αχνιστό dim sum και πλούσιες παραδοσιακές γεύσεις από την κουζίνα μας.'
   },
@@ -157,7 +149,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Golden Buffet & Fresh Specialties',
     titleEl: 'Πλούσιος Ασιατικός Μπουφές & Σπεσιαλιτέ',
     category: 'dishes',
-    imageUrl: imgFood10,
+    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=85',
     caption: 'An abundant variety of hot authentic dishes and fresh choices.',
     captionEl: 'Μεγάλη ποικιλία από ζεστά αυθεντικά πιάτα και ολόφρεσκες επιλογές.'
   },
@@ -166,7 +158,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Artisanal Sushi & Fresh Rolls',
     titleEl: 'Χειροποίητο Sushi & Φρέσκα Rolls',
     category: 'dishes',
-    imageUrl: imgFood13,
+    imageUrl: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1400&q=85',
     caption: 'Meticulously crafted sushi rolls, sashimi, and fresh Japanese creations.',
     captionEl: 'Εκλεκτά sushi rolls, sashimi και ολόφρεσκες ιαπωνικές δημιουργίες.'
   }
