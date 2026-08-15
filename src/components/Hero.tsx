@@ -52,7 +52,7 @@ export const Hero: React.FC<HeroProps> = ({
   const [emailSentStatus, setEmailSentStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   // Target Restaurant Contact Info
-  const TARGET_EMAIL = 'wangyasi2006@gmail.com';
+  const TARGET_EMAIL = 'wangjianfeng1976@gmail.com';
   const RESTAURANT_PHONE = '2109345137';
   const RESTAURANT_PHONE_DISPLAY = '210 934 5137';
 
@@ -456,8 +456,8 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
             </div>
 
-            {/* Name, Phone & Submit CTA Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 pt-1">
+            {/* Name, Phone, Comments & Submit CTA Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-1">
               {/* Mandatory Name */}
               <div className="space-y-1">
                 <label className={`text-[11px] uppercase tracking-wider font-semibold flex items-center space-x-1 ${
@@ -494,6 +494,27 @@ export const Hero: React.FC<HeroProps> = ({
                   value={guestPhone}
                   onChange={(e) => setGuestPhone(e.target.value)}
                   placeholder={isGreek ? 'π.χ. 698 123 4567' : 'e.g. +30 698 123 4567'}
+                  className={`w-full border rounded-sm px-3 py-2 text-sm focus:outline-none font-medium ${
+                    isLight
+                      ? 'bg-[#F5EFEB] border-[#C8BCA8] text-[#1C1917] placeholder-[#8C8275] focus:border-[#8A6310]'
+                      : 'bg-[#181818] border-[#d4af37]/30 text-[#f0f0f0] placeholder-[#666666] focus:border-[#d4af37]'
+                  }`}
+                />
+              </div>
+
+              {/* Optional Comments / Special Requests */}
+              <div className="space-y-1">
+                <label className={`text-[11px] uppercase tracking-wider font-semibold flex items-center space-x-1 ${
+                  isLight ? 'text-[#574F44]' : 'text-[#cccccc]'
+                }`}>
+                  <MessageSquare className={`w-3 h-3 ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`} />
+                  <span>{isGreek ? 'Σχόλια (Προαιρετικό)' : 'Comments (Optional)'}</span>
+                </label>
+                <input
+                  type="text"
+                  value={specialRequests}
+                  onChange={(e) => setSpecialRequests(e.target.value)}
+                  placeholder={isGreek ? 'π.χ. γενέθλια, ήσυχο τραπέζι...' : 'e.g. birthday, quiet table...'}
                   className={`w-full border rounded-sm px-3 py-2 text-sm focus:outline-none font-medium ${
                     isLight
                       ? 'bg-[#F5EFEB] border-[#C8BCA8] text-[#1C1917] placeholder-[#8C8275] focus:border-[#8A6310]'
@@ -732,14 +753,14 @@ export const Hero: React.FC<HeroProps> = ({
                       isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'
                     }`}>
                       <MessageSquare className="w-3.5 h-3.5" />
-                      <span>{isGreek ? 'Ειδικές Επιθυμίες & Σημειώσεις (Προαιρετικό)' : 'Special Requests & Dietary Notes (Optional)'}</span>
+                      <span>{isGreek ? 'Σχόλια & Ειδικές Επιθυμίες (Προαιρετικό)' : 'Comments & Special Requests (Optional)'}</span>
                     </label>
-                    <input
-                      type="text"
+                    <textarea
+                      rows={2}
                       value={specialRequests}
                       onChange={(e) => setSpecialRequests(e.target.value)}
-                      placeholder={isGreek ? 'π.χ. Επέτειος, ήσυχο τραπέζι, παιδικό καρεκλάκι...' : 'e.g. Anniversary, quiet corner, high chair...'}
-                      className={`w-full border px-3.5 py-2 rounded text-xs focus:outline-none ${
+                      placeholder={isGreek ? 'π.χ. Επέτειος, γενέθλια, ήσυχο τραπέζι, παιδικό καρεκλάκι, αλλεργίες...' : 'e.g. Anniversary, birthday, quiet corner, high chair, dietary notes...'}
+                      className={`w-full border px-3.5 py-2 rounded text-xs focus:outline-none resize-none ${
                         isLight
                           ? 'bg-[#FAF6F0] border-[#C8BCA8] text-[#1C1917] placeholder-[#8C8275] focus:border-[#8A6310]'
                           : 'bg-[#141414] border-[#2a2a2a] text-[#f0f0f0] placeholder-[#666666] focus:border-[#d4af37]'
