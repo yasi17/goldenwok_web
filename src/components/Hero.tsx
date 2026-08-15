@@ -142,20 +142,29 @@ export const Hero: React.FC<HeroProps> = ({
     }`}>
       {/* Cinematic Background with Atmospheric Layers */}
       <div className="absolute inset-0 z-0">
+        {/* Mobile Background Image */}
         <img
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=2000&q=85"
-          alt="GoldenWok Kitchen Flame Hearth"
-          className={`w-full h-full object-cover object-center scale-105 filter ${
-            isLight ? 'brightness-[0.45] contrast-[1.1]' : 'brightness-[0.32] contrast-[1.15]'
+          src="/images/f1.webp"
+          alt="GoldenWok Atmosphere Mobile"
+          className={`block sm:hidden w-full h-full object-cover object-center filter ${
+            isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
+          }`}
+        />
+        {/* Tablet & Desktop Background Image */}
+        <img
+          src="/images/food6.webp"
+          alt="GoldenWok Restaurant Exterior"
+          className={`hidden sm:block w-full h-full object-cover object-center scale-105 filter ${
+            isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
           }`}
         />
         {/* Atmospheric overlays */}
         <div className={`absolute inset-0 bg-gradient-to-t ${
           isLight 
-            ? 'from-[#F7F3EB] via-black/60 to-black/75' 
-            : 'from-black via-black/70 to-black/80'
+            ? 'from-[#F7F3EB] via-black/45 sm:via-black/55 to-black/65 sm:to-black/70' 
+            : 'from-black via-black/55 sm:via-black/65 to-black/70 sm:to-black/75'
         }`}></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/10 via-transparent to-black/90"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/15 via-transparent to-black/85"></div>
       </div>
 
       {/* Hero Main Content */}
