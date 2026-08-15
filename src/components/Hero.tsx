@@ -20,6 +20,7 @@ import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { useTheme } from '../ThemeContext';
 import { useLanguage } from '../LanguageContext';
+import { getImageSrc } from '../data/embeddedImages';
 
 interface HeroProps {
   onExploreMenu: () => void;
@@ -143,27 +144,21 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Cinematic Background with Atmospheric Layers */}
       <div className="absolute inset-0 z-0">
         {/* Mobile Background Image */}
-        <picture>
-          <source srcSet="/images/f1.webp" type="image/webp" />
-          <img
-            src="/images/f1.jpg"
-            alt="GoldenWok Atmosphere Mobile"
-            className={`block sm:hidden w-full h-full object-cover object-center filter ${
-              isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
-            }`}
-          />
-        </picture>
+        <img
+          src={getImageSrc('/images/f1.webp')}
+          alt="GoldenWok Atmosphere Mobile"
+          className={`block sm:hidden w-full h-full object-cover object-center filter ${
+            isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
+          }`}
+        />
         {/* Tablet & Desktop Background Image */}
-        <picture>
-          <source srcSet="/images/food6.webp" type="image/webp" />
-          <img
-            src="/images/food6.jpg"
-            alt="GoldenWok Restaurant Exterior"
-            className={`hidden sm:block w-full h-full object-cover object-center scale-105 filter ${
-              isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
-            }`}
-          />
-        </picture>
+        <img
+          src={getImageSrc('/images/food6.webp')}
+          alt="GoldenWok Restaurant Exterior"
+          className={`hidden sm:block w-full h-full object-cover object-center scale-105 filter ${
+            isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
+          }`}
+        />
         {/* Atmospheric overlays */}
         <div className={`absolute inset-0 bg-gradient-to-t ${
           isLight 

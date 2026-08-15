@@ -219,21 +219,12 @@ export const AtmosphereGallery: React.FC = () => {
                   exit="exit"
                   className="w-full h-full relative"
                 >
-                  <picture>
-                    <source srcSet={leftPhoto.imageUrl} type="image/webp" />
-                    <img
-                      src={leftPhoto.imageUrl.replace('.webp', '.jpg')}
-                      alt={leftPhoto.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover brightness-[0.82] group-hover:brightness-100 group-hover:scale-105 transition-all duration-500"
-                      onError={(e) => {
-                        const target = e.currentTarget;
-                        if (!target.src.includes('.jpg')) {
-                          target.src = leftPhoto.imageUrl.replace('.webp', '.jpg');
-                        }
-                      }}
-                    />
-                  </picture>
+                  <img
+                    src={leftPhoto.imageUrl}
+                    alt={leftPhoto.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover brightness-[0.82] group-hover:brightness-100 group-hover:scale-105 transition-all duration-500"
+                  />
                   {/* Subtle directional hint overlay on hover */}
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
                     <div className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -263,20 +254,11 @@ export const AtmosphereGallery: React.FC = () => {
                   exit="exit"
                   className="w-full h-full relative"
                 >
-                  <picture>
-                    <source srcSet={centerPhoto.imageUrl} type="image/webp" />
-                    <img
-                      src={centerPhoto.imageUrl.replace('.webp', '.jpg')}
-                      alt={centerPhoto.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      onError={(e) => {
-                        const target = e.currentTarget;
-                        if (!target.src.includes('.jpg')) {
-                          target.src = centerPhoto.imageUrl.replace('.webp', '.jpg');
-                        }
-                      }}
-                    />
-                  </picture>
+                  <img
+                    src={centerPhoto.imageUrl}
+                    alt={centerPhoto.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
 
                   {/* Top Right Zoom Icon on hover */}
                   <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -304,21 +286,12 @@ export const AtmosphereGallery: React.FC = () => {
                   exit="exit"
                   className="w-full h-full relative"
                 >
-                  <picture>
-                    <source srcSet={rightPhoto.imageUrl} type="image/webp" />
-                    <img
-                      src={rightPhoto.imageUrl.replace('.webp', '.jpg')}
-                      alt={rightPhoto.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover brightness-[0.82] group-hover:brightness-100 group-hover:scale-105 transition-all duration-500"
-                      onError={(e) => {
-                        const target = e.currentTarget;
-                        if (!target.src.includes('.jpg')) {
-                          target.src = rightPhoto.imageUrl.replace('.webp', '.jpg');
-                        }
-                      }}
-                    />
-                  </picture>
+                  <img
+                    src={rightPhoto.imageUrl}
+                    alt={rightPhoto.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover brightness-[0.82] group-hover:brightness-100 group-hover:scale-105 transition-all duration-500"
+                  />
                   {/* Subtle directional hint overlay on hover */}
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
                     <div className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -412,20 +385,11 @@ export const AtmosphereGallery: React.FC = () => {
 
             {/* Photo Container */}
             <div className="relative aspect-[16/10] sm:aspect-[16/11] max-h-[85vh] w-full bg-black flex items-center justify-center">
-              <picture>
-                <source srcSet={activePhoto.imageUrl} type="image/webp" />
-                <img
-                  src={activePhoto.imageUrl.replace('.webp', '.jpg')}
-                  alt={activePhoto.title}
-                  className="w-full h-full object-contain"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (!target.src.includes('.jpg')) {
-                      target.src = activePhoto.imageUrl.replace('.webp', '.jpg');
-                    }
-                  }}
-                />
-              </picture>
+              <img
+                src={activePhoto.imageUrl}
+                alt={activePhoto.title}
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
         </div>
