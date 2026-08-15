@@ -1,7 +1,14 @@
 import { MenuItem, ReviewItem, GalleryPhoto, BanquetSpace } from '../types';
 import { CHINESE_MENU_ITEMS } from './chineseMenuData';
 import { JAPANESE_MENU_ITEMS } from './japaneseMenuData';
-import { getImageSrc } from './embeddedImages';
+
+import imgF19 from '../assets/images/f19.webp';
+import imgF18 from '../assets/images/f18.webp';
+import imgF22 from '../assets/images/f22.webp';
+import imgFood2 from '../assets/images/food2.webp';
+import imgFood6 from '../assets/images/food6.webp';
+import imgFood10 from '../assets/images/food10.webp';
+import imgFood13 from '../assets/images/food13.webp';
 
 export const RESTAURANT_INFO = {
   name: '金鼎 GoldenWok',
@@ -105,7 +112,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Authentic Asian Atmosphere & Flavors',
     titleEl: 'Αυθεντική Ασιατική Ατμόσφαιρα & Γεύσεις',
     category: 'ambiance',
-    imageUrl: getImageSrc('/images/f19.webp'),
+    imageUrl: imgF19,
     caption: 'Authentic culinary moments and vibrant atmosphere at GoldenWok.',
     captionEl: 'Αυθεντικές γαστρονομικές στιγμές και ζεστή ατμόσφαιρα στο GoldenWok.'
   },
@@ -114,7 +121,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Exquisite Dining & Culinary Art',
     titleEl: 'Εκλεπτυσμένη Γαστρονομία & Πιάτα',
     category: 'dishes',
-    imageUrl: getImageSrc('/images/f18.webp'),
+    imageUrl: imgF18,
     caption: 'Artisanal dishes and refined flavors prepared with passion and precision.',
     captionEl: 'Χειροποίητα πιάτα και εκλεπτυσμένες γεύσεις φτιαγμένες με πάθος και ακρίβεια.'
   },
@@ -123,7 +130,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Warm Hospitality & Fine Ambiance',
     titleEl: 'Ζεστή Φιλοξενία & Εκλεπτυσμένος Χώρος',
     category: 'ambiance',
-    imageUrl: getImageSrc('/images/f22.webp'),
+    imageUrl: imgF22,
     caption: 'Welcoming dining spaces crafted for memorable Asian culinary gatherings.',
     captionEl: 'Φιλόξενοι χώροι εστίασης σχεδιασμένοι για αξέχαστες γαστρονομικές στιγμές.'
   },
@@ -132,7 +139,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Signature Delicacies & Fresh Appetizers',
     titleEl: 'Σπεσιαλιτέ & Φρέσκα Ορεκτικά',
     category: 'dishes',
-    imageUrl: getImageSrc('/images/food2.webp'),
+    imageUrl: imgFood2,
     caption: 'Freshly prepared Asian delicacies and appetizers served daily.',
     captionEl: 'Φρεσκομαγειρεμένα ασιατικά εδέσματα και ορεκτικά που ετοιμάζονται καθημερινά.'
   },
@@ -141,7 +148,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Master Dim Sum & Traditional Wok',
     titleEl: 'Χειροποίητο Dim Sum & Παραδοσιακό Wok',
     category: 'dishes',
-    imageUrl: getImageSrc('/images/food6.webp'),
+    imageUrl: imgFood6,
     caption: 'Crispy rolls, steamed dim sum, and rich flavors from our Asian kitchen.',
     captionEl: 'Τραγανά ρολά, αχνιστό dim sum και πλούσιες παραδοσιακές γεύσεις από την κουζίνα μας.'
   },
@@ -150,7 +157,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Golden Buffet & Fresh Specialties',
     titleEl: 'Πλούσιος Ασιατικός Μπουφές & Σπεσιαλιτέ',
     category: 'dishes',
-    imageUrl: getImageSrc('/images/food10.webp'),
+    imageUrl: imgFood10,
     caption: 'An abundant variety of hot authentic dishes and fresh choices.',
     captionEl: 'Μεγάλη ποικιλία από ζεστά αυθεντικά πιάτα και ολόφρεσκες επιλογές.'
   },
@@ -159,7 +166,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Artisanal Sushi & Fresh Rolls',
     titleEl: 'Χειροποίητο Sushi & Φρέσκα Rolls',
     category: 'dishes',
-    imageUrl: getImageSrc('/images/food13.webp'),
+    imageUrl: imgFood13,
     caption: 'Meticulously crafted sushi rolls, sashimi, and fresh Japanese creations.',
     captionEl: 'Εκλεκτά sushi rolls, sashimi και ολόφρεσκες ιαπωνικές δημιουργίες.'
   }

@@ -20,7 +20,8 @@ import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { useTheme } from '../ThemeContext';
 import { useLanguage } from '../LanguageContext';
-import { getImageSrc } from '../data/embeddedImages';
+import heroMobileImg from '../assets/images/f1.webp';
+import heroDesktopImg from '../assets/images/food6.webp';
 
 interface HeroProps {
   onExploreMenu: () => void;
@@ -145,7 +146,7 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="absolute inset-0 z-0">
         {/* Mobile Background Image */}
         <img
-          src={getImageSrc('/images/f1.webp')}
+          src={heroMobileImg}
           alt="GoldenWok Atmosphere Mobile"
           className={`block sm:hidden w-full h-full object-cover object-center filter ${
             isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
@@ -153,7 +154,7 @@ export const Hero: React.FC<HeroProps> = ({
         />
         {/* Tablet & Desktop Background Image */}
         <img
-          src={getImageSrc('/images/food6.webp')}
+          src={heroDesktopImg}
           alt="GoldenWok Restaurant Exterior"
           className={`hidden sm:block w-full h-full object-cover object-center scale-105 filter ${
             isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
