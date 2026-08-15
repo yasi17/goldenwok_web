@@ -52,7 +52,7 @@ export const Hero: React.FC<HeroProps> = ({
   const [emailSentStatus, setEmailSentStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   // Target Restaurant Contact Info
-  const TARGET_EMAIL = 'wangjianfeng1976@gmail.com';
+  const TARGET_EMAIL = 'goldenwok207@gmail.com';
   const RESTAURANT_PHONE = '2109345137';
   const RESTAURANT_PHONE_DISPLAY = '210 934 5137';
 
@@ -109,7 +109,7 @@ export const Hero: React.FC<HeroProps> = ({
       colors: ['#d4af37', '#f5e298', '#b38728', '#ffd700', '#ffffff']
     });
 
-    // Send directly to wangjianfeng1976@gmail.com
+    // Send directly to goldenwok207@gmail.com
     sendReservationEmail(randomCode);
   };
 
@@ -128,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({
       colors: ['#d4af37', '#f5e298', '#b38728', '#ffd700', '#ffffff']
     });
 
-    // Send directly to wangjianfeng1976@gmail.com
+    // Send directly to goldenwok207@gmail.com
     sendReservationEmail(randomCode);
   };
 
