@@ -9,7 +9,7 @@ import { useLanguage } from '../LanguageContext';
 export const AtmosphereGallery: React.FC = () => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<number>(0);
@@ -256,30 +256,14 @@ export const AtmosphereGallery: React.FC = () => {
                   <img
                     src={centerPhoto.imageUrl}
                     alt={centerPhoto.title}
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
 
-                  {/* Gradient shadow for caption readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-
-                  {/* Top Right Zoom Icon Badge */}
-                  <div className="absolute top-4 right-4 z-10">
-                    <div className="p-2 sm:p-2.5 rounded-full bg-black/60 backdrop-blur-md text-[#fbf5b7] border border-[#d4af37]/40 shadow-lg group-hover:scale-110 group-hover:bg-[#d4af37] group-hover:text-black transition-all duration-300">
+                  {/* Top Right Zoom Icon on hover */}
+                  <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="p-2 sm:p-2.5 rounded-full bg-black/70 backdrop-blur-md text-[#fbf5b7] border border-[#d4af37]/40 shadow-lg group-hover:scale-110 group-hover:bg-[#d4af37] group-hover:text-black transition-all duration-300">
                       <Maximize2 className="w-4 h-4" />
                     </div>
-                  </div>
-
-                  {/* Bottom Information Card inside Center Image */}
-                  <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 z-10 space-y-1.5 text-left">
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#d4af37] text-black shadow-sm">
-                      {centerPhoto.category}
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-white font-serif-heading drop-shadow-md line-clamp-1">
-                      {centerPhoto.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-200 line-clamp-2 drop-shadow">
-                      {centerPhoto.caption}
-                    </p>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -398,27 +382,12 @@ export const AtmosphereGallery: React.FC = () => {
             </button>
 
             {/* Photo Container */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/11] w-full bg-black flex items-center justify-center">
+            <div className="relative aspect-[16/10] sm:aspect-[16/11] max-h-[85vh] w-full bg-black flex items-center justify-center">
               <img
                 src={activePhoto.imageUrl}
                 alt={activePhoto.title}
                 className="w-full h-full object-contain"
               />
-            </div>
-
-            {/* Lightbox Caption */}
-            <div className="p-4 sm:p-6 bg-[#111111] border-t border-[#d4af37]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <h4 className="text-base sm:text-lg font-bold text-[#faf6ee] font-serif-heading">
-                  {activePhoto.title}
-                </h4>
-                <p className="text-xs sm:text-sm text-gray-400">
-                  {activePhoto.caption}
-                </p>
-              </div>
-              <span className="self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#d4af37]/20 text-[#fbf5b7] border border-[#d4af37]/40">
-                {activePhoto.category}
-              </span>
             </div>
           </div>
         </div>

@@ -52,7 +52,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // Menu Section
     'menu.badge': 'Κουζίνα & Σπεσιαλιτέ',
     'menu.title': 'Το Μενού του GoldenWok',
-    'menu.subtitle': 'Όλα τα πιάτα μας παρασκευάζονται φρέσκα κατόπιν παραγγελίας με εκλεκτά υλικά, αυθεντικά μπαχαρικά και παραδοσιακές τεχνικές της Καντονέζικης και Σετσουάν κουζίνας.',
+    'menu.subtitle': 'Ζήστε την αληθινή τέχνη της μαγειρικής στο wok, όπου η έντονη φωτιά και τα εκλεκτά υλικά ενώνονται για να σας προσφέρουν αυθεντικές ασιατικές γεύσεις.',
     'menu.searchPlaceholder': 'Αναζήτηση πιάτων, υλικών, κινέζικων ονομασιών...',
     'menu.all': 'Όλα τα Πιάτα',
     'menu.cat.dim-sum': 'Dim Sum & Dumplings',
@@ -172,7 +172,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // Menu Section
     'menu.badge': 'Master Culinary Repertoire',
     'menu.title': 'The GoldenWok Dining Menu',
-    'menu.subtitle': 'Each dish is prepared fresh to order using pristine heirloom ingredients, authentic spices, and generations-old Cantonese and Sichuan techniques.',
+    'menu.subtitle': 'Experience the true art of wok cooking, where blazing heat and premium ingredients unite to bring you authentic Asian flavors.',
     'menu.searchPlaceholder': 'Search dishes, ingredients, Chinese characters...',
     'menu.all': 'All Offerings',
     'menu.cat.dim-sum': 'Dim Sum & Dumplings',
@@ -253,7 +253,7 @@ export const translations: Record<Language, Record<string, string>> = {
 };
 
 const LanguageContext = createContext<LanguageContextType>({
-  language: 'el',
+  language: 'en',
   toggleLanguage: () => {},
   setLanguage: () => {},
   t: (key: string) => key,
@@ -263,9 +263,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [language, setLanguageState] = useState<Language>(() => {
     try {
       const saved = localStorage.getItem('goldenwok_lang');
-      return saved === 'en' ? 'en' : 'el';
+      return saved === 'el' ? 'el' : 'en';
     } catch {
-      return 'el';
+      return 'en';
     }
   });
 

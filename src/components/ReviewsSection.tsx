@@ -11,7 +11,7 @@ export const ReviewsSection: React.FC = () => {
   const { language, t } = useLanguage();
   const isGreek = language === 'el';
 
-  const GOOGLE_MAPS_REVIEWS_URL = 'https://www.google.com/maps/search/?api=1&query=Golden+Wok+Leoforos+Andrea+Siggrou+207+Nea+Smyrni+171+21+Athens+Greece';
+  const GOOGLE_MAPS_REVIEWS_URL = 'https://www.google.com/maps/place/Golden+Wok/@37.9488389,23.7073053,17z/data=!3m1!5s0x14a1bc51cef43e79:0xec8d29488fcce0f7!4m8!3m7!1s0x14a1bc51ce80eb89:0x80f6c7c4c11974f0!8m2!3d37.9488389!4d23.7073053!9m1!1b1!16s%2Fg%2F1262d5t9q?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D';
 
   return (
     <section id="reviews" className={`py-20 sm:py-28 relative border-b transition-colors duration-300 ${
@@ -72,8 +72,8 @@ export const ReviewsSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Reviews Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-16">
+        {/* Reviews Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto gap-5 mb-16">
           {REVIEWS.map((review, index) => (
             <motion.a
               key={review.id}
@@ -88,29 +88,47 @@ export const ReviewsSection: React.FC = () => {
               href={review.reviewUrl || GOOGLE_MAPS_REVIEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group p-4 sm:p-5 rounded-md shadow-md flex flex-col justify-between space-y-3 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg cursor-pointer ${
+              className={`group p-5 sm:p-7 rounded-xl shadow-md flex flex-col justify-between space-y-4 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg cursor-pointer ${
                 isLight
                   ? 'bg-[#FFFFFF] border-[#C8BCA8] hover:border-[#8A6310] shadow-amber-950/5'
                   : 'bg-[#0e0e0e] border-[#222222] hover:border-[#d4af37]/60'
               }`}
             >
               <div className="space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <div className={`flex ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                    ))}
+                <div className="flex items-start justify-between gap-2">
+                  <div className="space-y-0.5">
+                    <h4 className={`text-xs sm:text-sm font-bold ${isLight ? 'text-[#1C1917]' : 'text-[#FAF6EE]'}`}>
+                      {review.author}
+                    </h4>
+                    {review.role && (
+                      <p className={`text-[10px] sm:text-[11px] leading-tight ${isLight ? 'text-[#6E6456]' : 'text-[#8E8679]'}`}>
+                        {review.role}
+                      </p>
+                    )}
                   </div>
-                  <div className="flex items-center space-x-1.5 opacity-70 group-hover:opacity-100 transition-opacity">
-                    <span className={`text-[11px] font-medium ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>
-                      {isGreek ? 'Κριτική Google' : 'Google Review'}
+                  <div className="flex items-center space-x-1.5 opacity-70 group-hover:opacity-100 transition-opacity shrink-0">
+                    <span className={`text-[10px] font-medium ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>
+                      Google
                     </span>
                     <ExternalLink className={`w-3 h-3 ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`} />
                   </div>
                 </div>
 
+                <div className="flex items-center space-x-2">
+                  <div className={`flex ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                    ))}
+                  </div>
+                  {review.date && (
+                    <span className={`text-[10px] ${isLight ? 'text-[#8C8070]' : 'text-[#7A7265]'}`}>
+                      • {review.date}
+                    </span>
+                  )}
+                </div>
+
                 <p className={`text-xs sm:text-sm font-normal leading-relaxed whitespace-pre-line ${
-                  isLight ? 'text-[#2D2821]' : 'text-[#e0e0e0]'
+                  isLight ? 'text-[#2D2821]' : 'text-[#ded6cb]'
                 }`}>
                   "{review.quote}"
                 </p>

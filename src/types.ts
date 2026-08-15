@@ -1,19 +1,31 @@
 export type MenuCategory = 
   | 'all'
-  | 'dim-sum'
-  | 'wok-hei'
-  | 'duck-specialties'
-  | 'noodles-rice'
-  | 'soups-greens'
-  | 'tea-cocktails'
-  | 'desserts';
+  | 'chinese-appetizers'
+  | 'chinese-soups'
+  | 'chinese-salads'
+  | 'chinese-vegetables'
+  | 'chinese-rice-noodles'
+  | 'chinese-duck'
+  | 'chinese-chicken'
+  | 'chinese-pork'
+  | 'chinese-beef'
+  | 'chinese-seafood'
+  | 'chinese-desserts'
+  | 'sushi-nigiri-sashimi'
+  | 'sushi-deep-fried-hot-rolls'
+  | 'sushi-tempura-rolls'
+  | 'sushi-maki'
+  | 'sushi-sets'
+  | 'sushi-tartar';
 
 export interface MenuItem {
   id: string;
+  code?: string;
   name: string;
   nameEl?: string;
   chineseName: string;
   category: MenuCategory;
+  cuisine?: 'chinese' | 'japanese';
   price: number;
   description: string;
   descriptionEl?: string;
@@ -66,9 +78,11 @@ export interface ReviewItem {
 export interface GalleryPhoto {
   id: string;
   title: string;
+  titleEl?: string;
   category: 'dishes' | 'ambiance' | 'wok-fire' | 'bar-tea';
   imageUrl: string;
   caption: string;
+  captionEl?: string;
 }
 
 export interface BanquetSpace {

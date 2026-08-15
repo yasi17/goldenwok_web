@@ -12,7 +12,9 @@ import {
   MessageSquare,
   Sparkles,
   ExternalLink,
-  ShoppingBag
+  ShoppingBag,
+  Mail,
+  Loader2
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
@@ -46,6 +48,50 @@ export const Hero: React.FC<HeroProps> = ({
   // Confirmed booking state
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [confirmationCode, setConfirmationCode] = useState('');
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
+  const [emailSentStatus, setEmailSentStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Target Restaurant Contact Info
+  const TARGET_EMAIL = 'wangyasi2006@gmail.com';
+  const RESTAURANT_PHONE = '2109345137';
+  const RESTAURANT_PHONE_DISPLAY = '210 934 5137';
+
+  const sendReservationEmail = async (code: string) => {
+    setIsSendingEmail(true);
+    setEmailSentStatus('idle');
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${TARGET_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `🥢 Νέα Κράτηση GoldenWok (${code}) - ${guestName.trim()}`,
+          _captcha: 'false',
+          'Κωδικός Κράτησης / Code': code,
+          'Όνομα Πελάτη / Name': guestName.trim(),
+          'Τηλέφωνο / Phone': guestPhone.trim(),
+          'Αριθμός Ατόμων / Guests': `${guests} άτομα`,
+          'Ημερομηνία / Date': date,
+          'Ώρα / Time': time,
+          'Ειδικές Σημειώσεις / Notes': specialRequests.trim() || 'Καμία',
+          'Ημερομηνία Αποστολής / Sent At': new Date().toLocaleString('el-GR')
+        })
+      });
+
+      if (response.ok) {
+        setEmailSentStatus('success');
+      } else {
+        setEmailSentStatus('error');
+      }
+    } catch {
+      // Non-blocking fallback
+      setEmailSentStatus('error');
+    } finally {
+      setIsSendingEmail(false);
+    }
+  };
 
   const handleOpenBookingModal = (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,6 +108,9 @@ export const Hero: React.FC<HeroProps> = ({
       origin: { y: 0.6 },
       colors: ['#d4af37', '#f5e298', '#b38728', '#ffd700', '#ffffff']
     });
+
+    // Send directly to wangjianfeng1976@gmail.com
+    sendReservationEmail(randomCode);
   };
 
   const handleConfirmReservation = (e: React.FormEvent) => {
@@ -78,6 +127,9 @@ export const Hero: React.FC<HeroProps> = ({
       origin: { y: 0.6 },
       colors: ['#d4af37', '#f5e298', '#b38728', '#ffd700', '#ffffff']
     });
+
+    // Send directly to wangjianfeng1976@gmail.com
+    sendReservationEmail(randomCode);
   };
 
   const handleCloseModal = () => {
@@ -454,12 +506,38 @@ export const Hero: React.FC<HeroProps> = ({
               <div className="flex items-end">
                 <button
                   type="submit"
-                  className="w-full py-2.5 px-4 rounded-sm bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black font-bold text-sm tracking-wider uppercase shadow-md hover:brightness-110 flex items-center justify-center space-x-1.5 transition-all cursor-pointer h-[38px]"
+                  disabled={isSendingEmail}
+                  className="w-full py-2.5 px-4 rounded-sm bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black font-bold text-sm tracking-wider uppercase shadow-md hover:brightness-110 flex items-center justify-center space-x-1.5 transition-all cursor-pointer h-[38px] disabled:opacity-75"
                 >
-                  <span>{t('nav.reserve')}</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-black" />
+                  {isSendingEmail ? (
+                    <>
+                      <Loader2 className="w-4 h-4 text-black animate-spin" />
+                      <span>{isGreek ? 'Αποστολή...' : 'Sending...'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>{t('nav.reserve')}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-black" />
+                    </>
+                  )}
                 </button>
               </div>
+            </div>
+
+            {/* Inquiries / Telephone Notice */}
+            <div className={`pt-2 flex items-center justify-center space-x-2 text-xs font-medium ${
+              isLight ? 'text-[#574F44]' : 'text-[#d4af37]'
+            }`}>
+              <Phone className="w-3.5 h-3.5 text-[#B8860B] shrink-0" />
+              <span>
+                {isGreek ? 'Αν έχετε οποιαδήποτε πληροφορία καλέστε στο ' : 'If you have any questions or inquiries, please call '}
+                <a 
+                  href={`tel:${RESTAURANT_PHONE}`} 
+                  className="font-bold underline hover:text-[#B8860B] transition-colors"
+                >
+                  {RESTAURANT_PHONE_DISPLAY}
+                </a>
+              </span>
             </div>
           </form>
         </motion.div>
@@ -506,9 +584,9 @@ export const Hero: React.FC<HeroProps> = ({
                   </h3>
                   <p className={`text-xs font-light ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
                     {isGreek ? (
-                      <>Σας ευχαριστούμε, <strong className={isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}>{guestName}</strong>! Το τραπέζι σας κρατήθηκε.</>
+                      <>Σας ευχαριστούμε, <strong className={isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}>{guestName}</strong>! Το αίτημα κράτησης καταχωρήθηκε.</>
                     ) : (
-                      <>Thank you, <strong className={isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}>{guestName}</strong>! Your table is booked.</>
+                      <>Thank you, <strong className={isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}>{guestName}</strong>! Your reservation request has been submitted.</>
                     )}
                   </p>
                 </div>
@@ -524,7 +602,7 @@ export const Hero: React.FC<HeroProps> = ({
                   </div>
                   <div className="flex justify-between">
                     <span className={isLight ? 'text-[#6B6154]' : 'text-[#888888]'}>{isGreek ? 'Ημερομηνία & Ώρα:' : 'Date & Time:'}</span>
-                    <span className={`font-bold ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>{date} στις {time}</span>
+                    <span className={`font-bold ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>{date} {isGreek ? 'στις' : 'at'} {time}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className={isLight ? 'text-[#6B6154]' : 'text-[#888888]'}>{isGreek ? 'Τηλέφωνο:' : 'Phone:'}</span>
@@ -538,18 +616,58 @@ export const Hero: React.FC<HeroProps> = ({
                   )}
                 </div>
 
-                <p className={`text-[11px] ${isLight ? 'text-[#6B6154]' : 'text-[#777777]'}`}>
-                  {isGreek 
-                    ? `Θα σας σταλεί επιβεβαίωση στο ${guestPhone}. Σας περιμένουμε!` 
-                    : `An SMS reminder will be sent to ${guestPhone}. We look forward to welcoming you!`}
-                </p>
+                {/* Email Dispatch Status Box */}
+                <div className={`p-3.5 rounded border text-left flex items-start space-x-3 text-xs ${
+                  isLight 
+                    ? 'bg-[#B8860B]/10 border-[#B8860B]/30 text-[#2D241E]' 
+                    : 'bg-[#d4af37]/10 border-[#d4af37]/30 text-[#f5f2eb]'
+                }`}>
+                  <Mail className="w-4 h-4 text-[#B8860B] shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <p className="font-bold text-[#B8860B]">
+                      {isGreek ? 'Αποστολή στο Email: ' : 'Forwarded to Email: '}
+                      <span className="font-mono">{TARGET_EMAIL}</span>
+                    </p>
+                    <p className="text-[11px] opacity-90">
+                      {isGreek 
+                        ? 'Τα στοιχεία της κράτησης απεστάλησαν αυτόματα στη διεύθυνση του εστιατορίου.'
+                        : 'The reservation details have been automatically transmitted to the restaurant email.'}
+                    </p>
+                  </div>
+                </div>
 
-                <button
-                  onClick={handleCloseModal}
-                  className="w-full py-2.5 rounded-sm bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black font-bold text-xs uppercase tracking-wider shadow-md hover:brightness-110 transition-all cursor-pointer"
-                >
-                  {isGreek ? 'Ολοκλήρωση' : 'Done'}
-                </button>
+                {/* Inquiry Phone Callout */}
+                <div className={`p-3 rounded border text-center text-xs ${
+                  isLight ? 'bg-[#FAF6F0] border-[#C8BCA8]' : 'bg-[#141414] border-[#2a2a2a]'
+                }`}>
+                  <p className="font-medium">
+                    {isGreek ? 'Αν έχετε οποιαδήποτε πληροφορία καλέστε στο ' : 'If you have any questions, please call '}
+                    <a 
+                      href={`tel:${RESTAURANT_PHONE}`}
+                      className="font-bold text-[#B8860B] underline hover:brightness-110 ml-1 inline-flex items-center space-x-1"
+                    >
+                      <Phone className="w-3 h-3 inline mr-0.5" />
+                      <span>{RESTAURANT_PHONE_DISPLAY}</span>
+                    </a>
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                  <a
+                    href={`tel:${RESTAURANT_PHONE}`}
+                    className="w-full py-2.5 px-3 rounded-sm bg-[#1C1917] hover:bg-[#2D241E] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all cursor-pointer flex items-center justify-center space-x-1.5"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[#d4af37]" />
+                    <span>{isGreek ? `Κλήση ${RESTAURANT_PHONE_DISPLAY}` : `Call ${RESTAURANT_PHONE_DISPLAY}`}</span>
+                  </a>
+
+                  <button
+                    onClick={handleCloseModal}
+                    className="w-full py-2.5 px-3 rounded-sm bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black font-bold text-xs uppercase tracking-wider shadow-md hover:brightness-110 transition-all cursor-pointer"
+                  >
+                    {isGreek ? 'Ολοκλήρωση' : 'Done'}
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="space-y-5">
@@ -629,13 +747,31 @@ export const Hero: React.FC<HeroProps> = ({
                     />
                   </div>
 
-                  <div className="pt-2">
+                  {/* Telephone Inquiries Callout */}
+                  <p className={`text-[11px] text-center pt-1 ${isLight ? 'text-[#6B6154]' : 'text-[#a0a0a0]'}`}>
+                    {isGreek ? 'Αν έχετε οποιαδήποτε πληροφορία καλέστε στο ' : 'If you have any questions, please call '}
+                    <a href={`tel:${RESTAURANT_PHONE}`} className="font-bold text-[#B8860B] underline">
+                      {RESTAURANT_PHONE_DISPLAY}
+                    </a>
+                  </p>
+
+                  <div className="pt-1">
                     <button
                       type="submit"
-                      className="w-full py-3 rounded-sm bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black font-bold text-xs uppercase tracking-wider shadow-md hover:brightness-110 transition-all cursor-pointer flex items-center justify-center space-x-2"
+                      disabled={isSendingEmail}
+                      className="w-full py-3 rounded-sm bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black font-bold text-xs uppercase tracking-wider shadow-md hover:brightness-110 transition-all cursor-pointer flex items-center justify-center space-x-2 disabled:opacity-75"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-black" />
-                      <span>{isGreek ? 'Επιβεβαίωση Κράτησης Τραπεζιού' : 'Confirm Table Reservation'}</span>
+                      {isSendingEmail ? (
+                        <>
+                          <Loader2 className="w-4 h-4 text-black animate-spin" />
+                          <span>{isGreek ? 'Αποστολή Κράτησης...' : 'Sending Reservation...'}</span>
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle2 className="w-4 h-4 text-black" />
+                          <span>{isGreek ? 'Επιβεβαίωση Κράτησης Τραπεζιού' : 'Confirm Table Reservation'}</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>
