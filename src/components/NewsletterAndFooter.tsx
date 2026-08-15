@@ -76,7 +76,7 @@ export const NewsletterAndFooter: React.FC<NewsletterAndFooterProps> = ({
               <li><a href="#menu" className={isLight ? 'hover:text-[#8A6310] transition-colors' : 'hover:text-[#d4af37] transition-colors'}>{t('nav.menu')}</a></li>
               <li><a href="#gallery" className={isLight ? 'hover:text-[#8A6310] transition-colors' : 'hover:text-[#d4af37] transition-colors'}>{t('nav.gallery')}</a></li>
               <li><a href="#reviews" className={isLight ? 'hover:text-[#8A6310] transition-colors' : 'hover:text-[#d4af37] transition-colors'}>{t('nav.reviews')}</a></li>
-              <li><a href="#location" className={isLight ? 'hover:text-[#8A6310] transition-colors' : 'hover:text-[#d4af37] transition-colors'}>{t('nav.location')}</a></li>
+              <li><a href="#location" className={isLight ? 'hover:text-[#8A6310] transition-colors' : 'hover:text-[#d4af37] transition-colors'}>{t('nav.contact')}</a></li>
             </ul>
           </div>
 

@@ -159,7 +159,7 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="absolute inset-0 z-0">
         {/* Mobile Background Image */}
         <img
-          src="https://lh3.googleusercontent.com/pw/AP1GczNz7sK9xc34gonPucn75OKpCVkP7bnKTGTE6HCBwZHBKusoRv5iME6U5WCRj44RaR5x3iZrzY4CjdzzzWRQOuGDPLlAtdbX1lu4MzIrbWSei14M1gQ=w1200-h900-no"
+          src="https://lh3.googleusercontent.com/pw/AP1GczOuRClFpHuJBEleSeEAKDI6gSNEDsw13t4LYgYHlIAyHCvmP1pZRipJ4bu7FbkQcrIQFt2s7iMs_QpkLSXzt0rx5lFtnXX82wKwLxrPGrJTAp3-mTI=w1200-h1600-no"
           alt="GoldenWok Atmosphere Mobile"
           className={`block sm:hidden w-full h-full object-cover object-center filter ${
             isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'

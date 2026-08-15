@@ -304,7 +304,7 @@ export const LocationAndHours: React.FC = () => {
                   isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'
                 }`}>
                   {isGreek 
-                    ? 'Διαθέσιμος χώρος στάθμευσης στον παράδρομο της Συγγρού και στους παρακείμενους δρόμους της Νέας Σμύρνης.' 
+                    ? 'Διαθέσιμη στάθμευση στους δρόμους κατά μήκος της παράδρομης οδού Συγγρού και των γύρω δρόμων της Νέας Σμύρνης. Δυνατότητα άμεσης αποβίβασης επιβατών ακριβώς έξω από την κεντρική μας είσοδο.' 
                     : 'Street parking along the Sygrou service lane and adjacent Nea Smyrni streets. Direct passenger drop-off right outside our front door.'}
                 </p>
               </div>
