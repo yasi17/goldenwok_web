@@ -11,11 +11,14 @@ export type MenuCategory =
   | 'chinese-beef'
   | 'chinese-seafood'
   | 'chinese-desserts'
+  | 'japanese-salads'
+  | 'japanese-soups'
   | 'sushi-nigiri-sashimi'
+  | 'sushi-maki'
+  | 'sushi-fried-maki'
+  | 'sushi-sets'
   | 'sushi-deep-fried-hot-rolls'
   | 'sushi-tempura-rolls'
-  | 'sushi-maki'
-  | 'sushi-sets'
   | 'sushi-tartar';
 
 export interface MenuItem {

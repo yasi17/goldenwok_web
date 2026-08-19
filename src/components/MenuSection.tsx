@@ -27,23 +27,23 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
     { id: 'chinese-appetizers', name: 'Appetizers & Bao Buns', nameEl: 'Ορεκτικά & Bao Buns' },
     { id: 'chinese-soups', name: 'Soups', nameEl: 'Σούπες' },
     { id: 'chinese-salads', name: 'Salads & Edamame', nameEl: 'Σαλάτες & Edamame' },
-    { id: 'chinese-vegetables', name: 'Vegetarian Specialties', nameEl: 'Χορτοφαγικά Πιάτα' },
-    { id: 'chinese-rice-noodles', name: 'Rice & Noodles (Udon / Vermicelli)', nameEl: 'Ρύζι & Noodles / Udon' },
-    { id: 'chinese-duck', name: 'Roast Duck & Peking Duck', nameEl: 'Πάπια & Πάπια Πεκίνου' },
+    { id: 'chinese-vegetables', name: 'Vegetarian Dishes', nameEl: 'Χορτοφαγικά Πιάτα' },
+    { id: 'chinese-rice-noodles', name: 'Rice & Noodles', nameEl: 'Ρύζι & Ζυμαρικά' },
+    { id: 'chinese-duck', name: 'Roast & Peking Duck', nameEl: 'Πάπια & Πάπια Πεκίνου' },
     { id: 'chinese-chicken', name: 'Chicken Dishes', nameEl: 'Πιάτα με Κοτόπουλο' },
     { id: 'chinese-pork', name: 'Pork Dishes', nameEl: 'Πιάτα με Χοιρινό' },
     { id: 'chinese-beef', name: 'Beef Dishes', nameEl: 'Πιάτα με Μοσχάρι' },
-    { id: 'chinese-seafood', name: 'Seafood & Prawns', nameEl: 'Θαλασσινά & Γαρίδες' },
-    { id: 'chinese-desserts', name: 'Desserts', nameEl: 'Επιδόρπια' }
+    { id: 'chinese-seafood', name: 'Shrimps & Seafood', nameEl: 'Γαρίδες & Θαλασσινά' },
+    { id: 'chinese-desserts', name: 'Desserts & Ice Cream', nameEl: 'Επιδόρπια & Παγωτό' }
   ];
 
   const japaneseCategories: { id: MenuCategory; name: string; nameEl: string }[] = [
-    { id: 'sushi-nigiri-sashimi', name: 'Nigiri & Sashimi (2 pcs)', nameEl: 'Nigiri & Sashimi (2 τμχ)' },
-    { id: 'sushi-deep-fried-hot-rolls', name: 'Deep Fried Hot Rolls', nameEl: 'Deep Fried Hot Rolls' },
-    { id: 'sushi-tempura-rolls', name: 'Tempura Rolls', nameEl: 'Tempura Rolls' },
-    { id: 'sushi-maki', name: 'Maki Rolls', nameEl: 'Maki Ρολά' },
-    { id: 'sushi-sets', name: 'Sushi Combos & Sets', nameEl: 'Sushi Sets & Συνδυασμοί' },
-    { id: 'sushi-tartar', name: 'Tartar', nameEl: 'Tartar Σολομού / Τόνου' }
+    { id: 'sushi-nigiri-sashimi', name: 'Nigiri & Sashimi (6 pcs)', nameEl: 'Nigiri & Sashimi (6 τμχ)' },
+    { id: 'sushi-maki', name: 'Maki (8 pcs)', nameEl: 'Maki (8 τμχ)' },
+    { id: 'sushi-fried-maki', name: 'Fried Maki (8 pcs)', nameEl: 'Τηγανητά Maki (8 τμχ)' },
+    { id: 'sushi-sets', name: 'Sushi Sets & Combos', nameEl: 'Συνδυασμοί & Sushi Sets' },
+    { id: 'japanese-salads', name: 'Salads & Wakame', nameEl: 'Σαλάτες & Wakame' },
+    { id: 'japanese-soups', name: 'Soups & Udon', nameEl: 'Σούπες Miso & Udon' }
   ];
 
   const [selectedCategory, setSelectedCategory] = useState<MenuCategory>('chinese-appetizers');
@@ -245,12 +245,13 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
                   onClick={() => onSelectDish(item)}
                 >
                   {/* Item Image */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-black/20">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-black/20 transform-gpu">
                     <img 
                       src={item.imageUrl} 
                       alt={name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 transform-gpu"
                     />
                     
                     {/* Dark gradient shadow */}

@@ -104,7 +104,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Authentic Asian Dining & Atmosphere',
     titleEl: 'Αυθεντική Ασιατική Ατμόσφαιρα & Φιλοξενία',
     category: 'ambiance',
-    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczPR2pJrssPUa0rUScyQlHJqP2IzTYqjfKPpxvgj1B52O93oJgwzphZ39pjoNtyCuviaMaCXjl0Ga6Ndq_emE9JZKxnw1Yu8Ny4AcYZYCmyeZW4wUrk=w1600-h1200-no',
+    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczPR2pJrssPUa0rUScyQlHJqP2IzTYqjfKPpxvgj1B52O93oJgwzphZ39pjoNtyCuviaMaCXjl0Ga6Ndq_emE9JZKxnw1Yu8Ny4AcYZYCmyeZW4wUrk=w900-rw',
     caption: 'Authentic culinary moments and vibrant dining space at GoldenWok.',
     captionEl: 'Αυθεντικές γαστρονομικές στιγμές και ζεστός χώρος στο GoldenWok.'
   },
@@ -113,7 +113,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Exquisite Dining & Culinary Art',
     titleEl: 'Εκλεπτυσμένη Γαστρονομία & Πιάτα',
     category: 'dishes',
-    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczNLTA-M0ENGkUWtu5ts8nCabzmB309kvgz1XTHqgnGSbTRmVMKzvY971RX3dyJZ3FkVw1Yv_AtcnflLKena6y-3wKAPz7VxuKXGy0AfJZbgMbPK1Mw=w1600-h1200-no',
+    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczNLTA-M0ENGkUWtu5ts8nCabzmB309kvgz1XTHqgnGSbTRmVMKzvY971RX3dyJZ3FkVw1Yv_AtcnflLKena6y-3wKAPz7VxuKXGy0AfJZbgMbPK1Mw=w900-rw',
     caption: 'Artisanal dishes and refined Asian flavors prepared with passion.',
     captionEl: 'Χειροποίητα πιάτα και εκλεπτυσμένες ασιατικές γεύσεις με πάθος.'
   },
@@ -122,7 +122,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Warm Hospitality & Elegant Interior',
     titleEl: 'Ζεστή Φιλοξενία & Κομψός Εσωτερικός Χώρος',
     category: 'ambiance',
-    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczMMayv2170bkYQNUTKVRxhBIEr4DmWkl-upSuuNFPRohWJjurULaK-Wz4jNI91-cjKm7xP12gAP_FY6fXfGYQhwvT7RxpGh5942G12SqRyLs67AcnU=w1600-h1200-no',
+    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczMMayv2170bkYQNUTKVRxhBIEr4DmWkl-upSuuNFPRohWJjurULaK-Wz4jNI91-cjKm7xP12gAP_FY6fXfGYQhwvT7RxpGh5942G12SqRyLs67AcnU=w900-rw',
     caption: 'Welcoming dining spaces crafted for memorable Asian culinary gatherings.',
     captionEl: 'Φιλόξενοι χώροι εστίασης σχεδιασμένοι για αξέχαστες γαστρονομικές στιγμές.'
   },
@@ -131,7 +131,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Signature Delicacies & Fresh Appetizers',
     titleEl: 'Σπεσιαλιτέ & Φρέσκα Ορεκτικά',
     category: 'dishes',
-    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczMBqguArwK8dMbqJXrPmExHlcNBrRad8kuxCvlARlgjiRJgd2ryK8p5jKGgTUaTs24tT5sk6uWKgjk9Rvv-bvNX2Gb6kCqkHPyk4IFur-1fFhgNKM0=w1600-h1200-no',
+    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczMBqguArwK8dMbqJXrPmExHlcNBrRad8kuxCvlARlgjiRJgd2ryK8p5jKGgTUaTs24tT5sk6uWKgjk9Rvv-bvNX2Gb6kCqkHPyk4IFur-1fFhgNKM0=w900-rw',
     caption: 'Freshly prepared Asian delicacies and appetizers served daily.',
     captionEl: 'Φρεσκομαγειρεμένα ασιατικά εδέσματα και ορεκτικά που ετοιμάζονται καθημερινά.'
   },
@@ -140,7 +140,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Master Dim Sum & Traditional Wok',
     titleEl: 'Χειροποίητο Dim Sum & Παραδοσιακό Wok',
     category: 'dishes',
-    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczPH5ZMlQWQalAC7Ln_mqOMaESnqEkKbfNFC6Vq30YG3EHIWDvNFVWFLCfi06edF0qpX0ZlZ9HixGmKJnKtLtDSegtolkPtsoVqiGZuEx1qo6xksuVQ=w1600-h1200-no',
+    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczPH5ZMlQWQalAC7Ln_mqOMaESnqEkKbfNFC6Vq30YG3EHIWDvNFVWFLCfi06edF0qpX0ZlZ9HixGmKJnKtLtDSegtolkPtsoVqiGZuEx1qo6xksuVQ=w900-rw',
     caption: 'Crispy rolls, steamed dim sum, and rich flavors from our Asian kitchen.',
     captionEl: 'Τραγανά ρολά, αχνιστό dim sum και πλούσιες παραδοσιακές γεύσεις από την κουζίνα μας.'
   },
@@ -149,7 +149,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Golden Buffet & Fresh Specialties',
     titleEl: 'Πλούσιος Ασιατικός Μπουφές & Σπεσιαλιτέ',
     category: 'dishes',
-    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczPg8x63oTd9jG7B8T-8ngY_nrwLdQwOoyzlR0BT2k0P7dWgl4EHjf1g-HzKXsWeQQikbstWGr74EPdmP_KrKysBEqXSc5htrxEi7joEtD2vxeN-VS4=w1600-h1200-no',
+    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczPg8x63oTd9jG7B8T-8ngY_nrwLdQwOoyzlR0BT2k0P7dWgl4EHjf1g-HzKXsWeQQikbstWGr74EPdmP_KrKysBEqXSc5htrxEi7joEtD2vxeN-VS4=w900-rw',
     caption: 'An abundant variety of hot authentic dishes and fresh choices.',
     captionEl: 'Μεγάλη ποικιλία από ζεστά αυθεντικά πιάτα και ολόφρεσκες επιλογές.'
   },
@@ -158,7 +158,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Artisanal Sushi & Fresh Rolls',
     titleEl: 'Χειροποίητο Sushi & Φρέσκα Rolls',
     category: 'dishes',
-    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczMarOcLDgkk7hpn3XErqXODrTvCeny-5ok9NcLjAP87EZSpdxdrCFgoIn3orM764KztR0xk0GTHDdo9JMR6Iw9MlelW46jU28L0w21xu5cJ6hyMH2E=w1600-h1200-no',
+    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczMarOcLDgkk7hpn3XErqXODrTvCeny-5ok9NcLjAP87EZSpdxdrCFgoIn3orM764KztR0xk0GTHDdo9JMR6Iw9MlelW46jU28L0w21xu5cJ6hyMH2E=w900-rw',
     caption: 'Meticulously crafted sushi rolls, sashimi, and fresh Japanese creations.',
     captionEl: 'Εκλεκτά sushi rolls, sashimi και ολόφρεσκες ιαπωνικές δημιουργίες.'
   },
@@ -167,7 +167,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Warm Asian Ambiance & Lighting',
     titleEl: 'Ζεστή Ασιατική Ατμόσφαιρα & Φωτισμός',
     category: 'ambiance',
-    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczNX60uvh-njV_jZFqAth617N_efn0BF825BqoPzG5hhc2ax9aLfksISAtC1uZ4y38t9XENlCKRUZRysI04u7jdOBOTLb_YBsTznav5UjY2T232YdRM=w1600-h1200-no',
+    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczNX60uvh-njV_jZFqAth617N_efn0BF825BqoPzG5hhc2ax9aLfksISAtC1uZ4y38t9XENlCKRUZRysI04u7jdOBOTLb_YBsTznav5UjY2T232YdRM=w900-rw',
     caption: 'Comfortable seating and traditional touches for an authentic culinary experience.',
     captionEl: 'Άνετοι χώροι και παραδοσιακές πινελιές για μια αυθεντική γαστρονομική εμπειρία.'
   },
@@ -176,7 +176,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Celebrations & Memorable Gatherings',
     titleEl: 'Εκδηλώσεις & Αξέχαστες Στιγμές',
     category: 'ambiance',
-    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczPqU79ooskg8PJBndL-8rUlxAVTkdk02j3UxvLd-ye2gLYKTSqIsWqa321dFfK7hSJjDHlspRIVjIBx5YZvkRwLctuG5TPiE5Wwz_scNlCZ8n1s6Sk=w1600-h1200-no',
+    imageUrl: 'https://lh3.googleusercontent.com/pw/AP1GczPqU79ooskg8PJBndL-8rUlxAVTkdk02j3UxvLd-ye2gLYKTSqIsWqa321dFfK7hSJjDHlspRIVjIBx5YZvkRwLctuG5TPiE5Wwz_scNlCZ8n1s6Sk=w900-rw',
     caption: 'The ideal venue for family dinners, banquets, and special celebrations.',
     captionEl: 'Ο ιδανικός προορισμός για οικογενειακά γεύματα, τραπέζια και γιορτές.'
   }

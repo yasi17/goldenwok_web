@@ -108,4 +108,16 @@ html.theme-light ::-webkit-scrollbar-thumb:hover {
   animation: subtlePulse 4s ease-in-out infinite;
 }
 
+/* Mobile GPU performance and smooth touch scrolling optimizations */
+img {
+  image-rendering: auto;
+  -webkit-touch-callout: none;
+}
+
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 

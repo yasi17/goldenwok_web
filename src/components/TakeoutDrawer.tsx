@@ -217,6 +217,8 @@ export const TakeoutDrawer: React.FC<TakeoutDrawerProps> = ({
                             <img
                               src={cartItem.item.imageUrl}
                               alt={dishName}
+                              loading="lazy"
+                              decoding="async"
                               className="w-14 h-14 object-cover rounded flex-shrink-0"
                             />
                             <div className="flex-1 min-w-0">
@@ -225,7 +227,7 @@ export const TakeoutDrawer: React.FC<TakeoutDrawerProps> = ({
                                   {dishName}
                                 </h4>
                                 <span className={`text-xs font-bold font-mono ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>
-                                  ${(cartItem.item.price * cartItem.quantity).toFixed(2)}
+                                  €{(cartItem.item.price * cartItem.quantity).toFixed(2)}
                                 </span>
                               </div>
 
@@ -336,19 +338,19 @@ export const TakeoutDrawer: React.FC<TakeoutDrawerProps> = ({
                   <div className={`space-y-1.5 text-xs ${isLight ? 'text-[#6B6154]' : 'text-[#888888]'}`}>
                     <div className="flex justify-between">
                       <span>{isGreek ? 'Υποσύνολο' : 'Subtotal'}</span>
-                      <span className={`font-medium ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>${subtotal.toFixed(2)}</span>
+                      <span className={`font-medium ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>€{subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>{isGreek ? 'ΦΠΑ (9.5%)' : 'Estimated Tax (9.5%)'}</span>
-                      <span className={`font-medium ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>${tax.toFixed(2)}</span>
+                      <span className={`font-medium ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>€{tax.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>{isGreek ? 'Οικολογική Συσκευασία' : 'Eco-Friendly Packaging'}</span>
-                      <span className={`font-medium ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>${packagingFee.toFixed(2)}</span>
+                      <span className={`font-medium ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>€{packagingFee.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>{isGreek ? 'Φιλοδώρημα' : 'Kitchen Tip'} ({tipPercent}%)</span>
-                      <span className={`font-medium ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>${tipAmount.toFixed(2)}</span>
+                      <span className={`font-medium ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>€{tipAmount.toFixed(2)}</span>
                     </div>
                     <div className={`flex justify-between pt-2 border-t text-sm font-bold ${
                       isLight ? 'border-[#C8BCA8] text-[#1C1917]' : 'border-[#1c1c1c] text-[#faf6ee]'
@@ -356,7 +358,7 @@ export const TakeoutDrawer: React.FC<TakeoutDrawerProps> = ({
                       <span>{isGreek ? 'Γενικό Σύνολο' : 'Grand Total'}</span>
                       <span className={`font-serif-heading text-lg font-mono ${
                         isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'
-                      }`}>${total.toFixed(2)}</span>
+                      }`}>€{total.toFixed(2)}</span>
                     </div>
                   </div>
 

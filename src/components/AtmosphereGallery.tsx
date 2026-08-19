@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Camera, X, Eye, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { GALLERY_PHOTOS } from '../data/restaurantData';
@@ -9,12 +9,16 @@ import { useLanguage } from '../LanguageContext';
 export const AtmosphereGallery: React.FC = () => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<number>(0);
   const [activePhoto, setActivePhoto] = useState<GalleryPhoto | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [, setIsHovered] = useState(false);
+
+  // Touch swipe support for mobile
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   const totalPhotos = GALLERY_PHOTOS.length;
 
@@ -31,6 +35,41 @@ export const AtmosphereGallery: React.FC = () => {
   const handleSelectIndex = (idx: number) => {
     setDirection(idx > currentIndex ? 1 : -1);
     setCurrentIndex(idx);
+  };
+
+  // Preload adjacent images in browser cache for instant lag-free mobile transitions
+  useEffect(() => {
+    const nextIdx = (currentIndex + 1) % totalPhotos;
+    const prevIdx = (currentIndex - 1 + totalPhotos) % totalPhotos;
+    const nextImg = new Image();
+    nextImg.src = GALLERY_PHOTOS[nextIdx].imageUrl;
+    const prevImg = new Image();
+    prevImg.src = GALLERY_PHOTOS[prevIdx].imageUrl;
+  }, [currentIndex, totalPhotos]);
+
+  // Touch Swipe Handlers
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = null;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > 45;
+    const isRightSwipe = distance < -45;
+
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrev();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
   };
 
   // Keyboard navigation
@@ -73,53 +112,52 @@ export const AtmosphereGallery: React.FC = () => {
   const centerPhoto = GALLERY_PHOTOS[centerIndex];
   const rightPhoto = GALLERY_PHOTOS[rightIndex];
 
-  // Motion animation variants for center card
+  // Fast GPU-accelerated motion animation variants for center card
   const slideVariants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? 80 : -80,
+      x: dir > 0 ? 50 : -50,
       opacity: 0,
-      scale: 0.92,
+      scale: 0.96,
     }),
     center: {
       x: 0,
       opacity: 1,
       scale: 1,
       transition: {
-        x: { type: 'spring', stiffness: 300, damping: 30 },
-        opacity: { duration: 0.35, ease: 'easeOut' },
-        scale: { duration: 0.4, ease: [0.25, 1, 0.5, 1] },
+        x: { duration: 0.28, ease: 'easeOut' },
+        opacity: { duration: 0.25, ease: 'easeOut' },
+        scale: { duration: 0.28, ease: 'easeOut' },
       },
     },
     exit: (dir: number) => ({
-      x: dir > 0 ? -80 : 80,
+      x: dir > 0 ? -50 : 50,
       opacity: 0,
-      scale: 0.92,
+      scale: 0.96,
       transition: {
-        x: { type: 'spring', stiffness: 300, damping: 30 },
-        opacity: { duration: 0.25, ease: 'easeIn' },
-        scale: { duration: 0.3 },
+        duration: 0.2,
+        ease: 'easeIn',
       },
     }),
   };
 
   const sideVariants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? 40 : -40,
+      x: dir > 0 ? 25 : -25,
       opacity: 0.4,
     }),
     center: {
       x: 0,
       opacity: 1,
       transition: {
-        duration: 0.45,
-        ease: [0.25, 1, 0.5, 1],
+        duration: 0.28,
+        ease: 'easeOut',
       },
     },
     exit: (dir: number) => ({
-      x: dir > 0 ? -40 : 40,
+      x: dir > 0 ? -25 : 25,
       opacity: 0.4,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
       },
     }),
   };
@@ -171,7 +209,12 @@ export const AtmosphereGallery: React.FC = () => {
         </motion.div>
 
         {/* 3-Image Carousel Stage matching exact reference layout */}
-        <div className="relative max-w-5xl mx-auto">
+        <div 
+          className="relative max-w-5xl mx-auto touch-pan-y select-none"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           
           {/* Navigation Controls (Floating side arrows) */}
           <button
@@ -201,7 +244,7 @@ export const AtmosphereGallery: React.FC = () => {
           </button>
 
           {/* 3 Photos Grid / Flex Container */}
-          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4 sm:gap-6 lg:gap-8 px-8 sm:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0">
             
             {/* Left Photo (Previous item, slightly smaller, rounded-3xl) */}
             <div
@@ -217,13 +260,14 @@ export const AtmosphereGallery: React.FC = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="w-full h-full relative"
+                  className="w-full h-full relative transform-gpu will-change-transform"
                 >
                   <img
                     src={leftPhoto.imageUrl}
                     alt={leftPhoto.title}
                     loading="lazy"
-                    className="w-full h-full object-cover brightness-[0.82] group-hover:brightness-100 group-hover:scale-105 transition-all duration-500"
+                    decoding="async"
+                    className="w-full h-full object-cover brightness-[0.82] group-hover:brightness-100 group-hover:scale-105 transition-all duration-500 transform-gpu"
                   />
                   {/* Subtle directional hint overlay on hover */}
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
@@ -237,7 +281,7 @@ export const AtmosphereGallery: React.FC = () => {
 
             {/* Center Photo (Main In-Focus Card, Taller/Prominent, rounded-3xl) */}
             <div
-              className="relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4] rounded-[26px] sm:rounded-[32px] overflow-hidden shadow-2xl group cursor-pointer border-2 transition-all duration-300"
+              className="relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4] rounded-[26px] sm:rounded-[32px] overflow-hidden shadow-2xl group cursor-pointer border-2 transition-all duration-300 transform-gpu"
               style={{
                 borderColor: isLight ? '#C8BCA8' : '#d4af37',
               }}
@@ -252,12 +296,13 @@ export const AtmosphereGallery: React.FC = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="w-full h-full relative"
+                  className="w-full h-full relative transform-gpu will-change-transform"
                 >
                   <img
                     src={centerPhoto.imageUrl}
                     alt={centerPhoto.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out transform-gpu"
                   />
 
                   {/* Top Right Zoom Icon on hover */}
@@ -284,13 +329,14 @@ export const AtmosphereGallery: React.FC = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="w-full h-full relative"
+                  className="w-full h-full relative transform-gpu will-change-transform"
                 >
                   <img
                     src={rightPhoto.imageUrl}
                     alt={rightPhoto.title}
                     loading="lazy"
-                    className="w-full h-full object-cover brightness-[0.82] group-hover:brightness-100 group-hover:scale-105 transition-all duration-500"
+                    decoding="async"
+                    className="w-full h-full object-cover brightness-[0.82] group-hover:brightness-100 group-hover:scale-105 transition-all duration-500 transform-gpu"
                   />
                   {/* Subtle directional hint overlay on hover */}
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
@@ -388,6 +434,7 @@ export const AtmosphereGallery: React.FC = () => {
               <img
                 src={activePhoto.imageUrl}
                 alt={activePhoto.title}
+                decoding="async"
                 className="w-full h-full object-contain"
               />
             </div>

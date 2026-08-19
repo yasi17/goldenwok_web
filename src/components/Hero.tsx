@@ -159,17 +159,21 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="absolute inset-0 z-0">
         {/* Mobile Background Image */}
         <img
-          src="https://lh3.googleusercontent.com/pw/AP1GczOuRClFpHuJBEleSeEAKDI6gSNEDsw13t4LYgYHlIAyHCvmP1pZRipJ4bu7FbkQcrIQFt2s7iMs_QpkLSXzt0rx5lFtnXX82wKwLxrPGrJTAp3-mTI=w1200-h1600-no"
+          src="https://lh3.googleusercontent.com/pw/AP1GczOuRClFpHuJBEleSeEAKDI6gSNEDsw13t4LYgYHlIAyHCvmP1pZRipJ4bu7FbkQcrIQFt2s7iMs_QpkLSXzt0rx5lFtnXX82wKwLxrPGrJTAp3-mTI=w900-rw"
           alt="GoldenWok Atmosphere Mobile"
-          className={`block sm:hidden w-full h-full object-cover object-center filter ${
+          loading="eager"
+          decoding="async"
+          className={`block sm:hidden w-full h-full object-cover object-center transform-gpu filter ${
             isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
           }`}
         />
         {/* Tablet & Desktop Background Image */}
         <img
-          src="https://lh3.googleusercontent.com/pw/AP1GczNz7sK9xc34gonPucn75OKpCVkP7bnKTGTE6HCBwZHBKusoRv5iME6U5WCRj44RaR5x3iZrzY4CjdzzzWRQOuGDPLlAtdbX1lu4MzIrbWSei14M1gQ=w1920-h1080-no"
+          src="https://lh3.googleusercontent.com/pw/AP1GczNz7sK9xc34gonPucn75OKpCVkP7bnKTGTE6HCBwZHBKusoRv5iME6U5WCRj44RaR5x3iZrzY4CjdzzzWRQOuGDPLlAtdbX1lu4MzIrbWSei14M1gQ=w1920-rw"
           alt="GoldenWok Restaurant Exterior"
-          className={`hidden sm:block w-full h-full object-cover object-center scale-105 filter ${
+          loading="eager"
+          decoding="async"
+          className={`hidden sm:block w-full h-full object-cover object-center scale-105 transform-gpu filter ${
             isLight ? 'brightness-[0.52] contrast-[1.08]' : 'brightness-[0.40] contrast-[1.12]'
           }`}
         />

@@ -51,10 +51,11 @@ export const DishDetailModal: React.FC<DishDetailModalProps> = ({
         </button>
 
         {/* 1. Dish Photo */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-black transform-gpu">
           <img
             src={dish.imageUrl}
             alt={dishName}
+            decoding="async"
             className="w-full h-full object-cover filter brightness-95 contrast-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
