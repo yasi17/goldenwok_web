@@ -88,8 +88,15 @@ export const NewsletterAndFooter: React.FC<NewsletterAndFooterProps> = ({
               {t('footer.connect')}
             </h4>
             <div className={`space-y-2 text-xs ${isLight ? 'text-[#574F44]' : 'text-[#888888]'}`}>
-              <p className={isLight ? 'text-[#2D2821]' : 'text-[#ded6cb]'}>
-                {isGreek ? RESTAURANT_INFO.addressEl || RESTAURANT_INFO.address : RESTAURANT_INFO.address}
+              <p>
+                <a 
+                  href={RESTAURANT_INFO.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`hover:underline ${isLight ? 'text-[#2D2821] hover:text-[#8A6310]' : 'text-[#ded6cb] hover:text-[#d4af37]'}`}
+                >
+                  {isGreek ? RESTAURANT_INFO.addressEl : RESTAURANT_INFO.address}
+                </a>
               </p>
               <p><a href={`tel:${RESTAURANT_INFO.phone}`} className={isLight ? 'hover:text-[#8A6310]' : 'hover:text-[#d4af37]'}>{RESTAURANT_INFO.phone}</a></p>
               <p><a href={`mailto:${RESTAURANT_INFO.email}`} className={isLight ? 'hover:text-[#8A6310]' : 'hover:text-[#d4af37]'}>{RESTAURANT_INFO.email}</a></p>

@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { CartItem } from '../types';
+import { RESTAURANT_INFO } from '../data/restaurantData';
 import { useTheme } from '../ThemeContext';
 import { useLanguage } from '../LanguageContext';
 
@@ -140,9 +141,16 @@ export const TakeoutDrawer: React.FC<TakeoutDrawerProps> = ({
                   <span className={isLight ? 'text-[#6B6154]' : 'text-[#888888]'}>{isGreek ? 'Εκτιμώμενος Χρόνος:' : 'Estimated Ready:'}</span>
                   <span className={`font-bold ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>{pickupTime}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <span className={isLight ? 'text-[#6B6154]' : 'text-[#888888]'}>{isGreek ? 'Σημείο Παραλαβής:' : 'Pickup Location:'}</span>
-                  <span className={`font-bold ${isLight ? 'text-[#1C1917]' : 'text-[#faf6ee]'}`}>Λ. Ανδρέα Συγγρού 207, Νέα Σμύρνη</span>
+                  <a 
+                    href={RESTAURANT_INFO.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`font-bold hover:underline ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}
+                  >
+                    {isGreek ? RESTAURANT_INFO.addressEl : RESTAURANT_INFO.address}
+                  </a>
                 </div>
                 <div className="flex justify-between">
                   <span className={isLight ? 'text-[#6B6154]' : 'text-[#888888]'}>{isGreek ? 'Σύνολο:' : 'Total Paid:'}</span>

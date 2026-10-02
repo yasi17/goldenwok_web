@@ -126,7 +126,7 @@ export const LocationAndHours: React.FC = () => {
   }, [isGreek]);
 
   const openGoogleMaps = () => {
-    window.open('https://www.google.com/maps/search/?api=1&query=Leoforos+Andrea+Siggrou+207+Nea+Smyrni+17121+Athens+Greece', '_blank');
+    window.open(RESTAURANT_INFO.googleMapsUrl, '_blank');
   };
 
   const openAppleMaps = () => {
@@ -386,15 +386,26 @@ export const LocationAndHours: React.FC = () => {
 
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className={`font-serif-heading text-xl sm:text-2xl font-bold ${
-                    isLight ? 'text-[#1C1917]' : 'text-[#faf6ee]'
-                  }`}>
-                    {isGreek ? RESTAURANT_INFO.addressEl || RESTAURANT_INFO.address : RESTAURANT_INFO.address}
-                  </h3>
+                  <a
+                    href={RESTAURANT_INFO.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/addr block transition-opacity cursor-pointer hover:opacity-95"
+                    title={isGreek ? 'Άνοιγμα στο Google Maps' : 'Open in Google Maps'}
+                  >
+                    <h3 className={`font-serif-heading text-xl sm:text-2xl font-bold flex items-center gap-2 transition-colors ${
+                      isLight 
+                        ? 'text-[#1C1917] group-hover/addr:text-[#8A6310]' 
+                        : 'text-[#faf6ee] group-hover/addr:text-[#d4af37]'
+                    }`}>
+                      <span>{isGreek ? RESTAURANT_INFO.addressEl : RESTAURANT_INFO.address}</span>
+                      <ExternalLink className="w-4 h-4 opacity-70 group-hover/addr:opacity-100 transition-opacity" />
+                    </h3>
+                  </a>
                   <p className={`text-xs font-medium pt-0.5 ${
                     isLight ? 'text-[#6B6154]' : 'text-[#a0a0a0]'
                   }`}>
-                    {isGreek ? 'Νέα Σμύρνη 171 21, Αθήνα' : 'Nea Smyrni 171 21, Athens, Greece'}
+                    {isGreek ? 'Αθήνα 171 21, Ελλάδα (Κλικ για άνοιγμα χάρτη)' : 'Athens 171 21, Greece (Click for map)'}
                   </p>
                 </div>
 

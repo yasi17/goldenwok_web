@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
+import { RESTAURANT_INFO } from '../data/restaurantData';
 
 interface InteractiveMapProps {
   isLight?: boolean;
@@ -104,9 +105,9 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({ isLight = false 
           <span>GoldenWok</span>
         </div>
         <p style="margin: 4px 0 8px 0; font-size: 12px; color: #555; line-height: 1.4;">
-          L. Andrea Sygrou 207, Nea Smyrni 171 21, Athens
+          ${RESTAURANT_INFO.addressEl}
         </p>
-        <a href="https://www.google.com/maps/search/?api=1&query=Leoforos+Andrea+Siggrou+207+Nea+Smyrni+17121+Athens+Greece" 
+        <a href="${RESTAURANT_INFO.googleMapsUrl}" 
            target="_blank" 
            rel="noopener noreferrer" 
            style="
