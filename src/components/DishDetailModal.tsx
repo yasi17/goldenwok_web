@@ -25,15 +25,16 @@ export const DishDetailModal: React.FC<DishDetailModalProps> = ({
 
   const dishName = isGreek && dish.nameEl ? dish.nameEl : dish.name;
   const dishDesc = isGreek && dish.descriptionEl ? dish.descriptionEl : dish.description;
+  const ingredients = isGreek && dish.ingredientsEl ? dish.ingredientsEl : dish.ingredients;
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div 
-        className={`relative w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden my-8 border transition-colors ${
-          isLight ? 'bg-[#FFFFFF] border-[#C8BCA8]' : 'bg-[#0a0a0a] border-[#d4af37]/60'
+        className={`relative w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden my-8 border transition-colors p-6 sm:p-8 ${
+          isLight ? 'bg-[#FAF6EE] border-[#C8BCA8]' : 'bg-[#0f0f0f] border-[#d4af37]/50'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
@@ -50,80 +51,115 @@ export const DishDetailModal: React.FC<DishDetailModalProps> = ({
           <X className="w-5 h-5" />
         </button>
 
-        {/* 1. Dish Photo */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-black transform-gpu">
-          <img
-            src={dish.imageUrl}
-            alt={dishName}
-            decoding="async"
-            className="w-full h-full object-cover filter brightness-95 contrast-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
-
-          {/* Badges */}
-          <div className="absolute bottom-4 left-6 flex items-center space-x-2">
-            {dish.code && (
-              <span className="px-2.5 py-1 rounded-lg bg-black/90 border border-[#d4af37]/80 text-[#fbf5b7] font-mono text-sm font-black shadow-md">
-                #{dish.code}
-              </span>
-            )}
-            <span className="px-3 py-1 rounded-lg bg-black/90 border border-[#d4af37]/50 text-[#d4af37] font-chinese text-sm font-bold">
-              {dish.chineseName}
+        {/* Header Tags & Badges */}
+        <div className="flex flex-wrap items-center gap-2 pr-10 mb-4">
+          {dish.code && (
+            <span className={`px-2.5 py-1 rounded-lg font-mono text-sm font-black shadow-sm ${
+              isLight 
+                ? 'bg-[#EAE2D5] text-[#8A6310] border border-[#8A6310]/30' 
+                : 'bg-[#1b1b1b] text-[#fbf5b7] border border-[#d4af37]/60'
+            }`}>
+              #{dish.code}
             </span>
-            {dish.isChefSpecial && (
-              <span className="px-3 py-1 rounded-lg bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black text-xs font-black uppercase tracking-wider flex items-center space-x-1 shadow-md">
-                <Sparkles className="w-3 h-3 text-black" />
-                <span>{t('menu.chefsChoice')}</span>
-              </span>
-            )}
-            {dish.spicyLevel && dish.spicyLevel > 0 && (
-              <span className="px-2 py-0.5 rounded-lg bg-red-950/90 text-red-200 text-xs font-bold border border-red-500/40">
-                {'🌶️'.repeat(dish.spicyLevel)}
-              </span>
-            )}
-          </div>
+          )}
+
+          <span className={`px-2.5 py-0.5 rounded text-xs font-semibold ${
+            isLight ? 'bg-[#E5DCD0] text-[#5A5248]' : 'bg-[#181818] text-[#c4b9a3]'
+          }`}>
+            {dish.cuisine === 'chinese' 
+              ? (isGreek ? '🥡 Κινέζικο Μενού' : '🥡 Chinese Menu')
+              : (isGreek ? '🍣 Sushi & Ιαπωνικό' : '🍣 Japanese & Sushi')
+            }
+          </span>
+
+          {dish.isChefSpecial && (
+            <span className="px-2.5 py-0.5 rounded-md bg-[#8A6310] text-[#fbf5b7] text-xs font-bold tracking-wider uppercase flex items-center space-x-1 shadow-sm">
+              <Sparkles className="w-3 h-3 text-[#fbf5b7]" />
+              <span>{t('menu.chefsChoice')}</span>
+            </span>
+          )}
+
+          {dish.isPopular && (
+            <span className="px-2 py-0.5 rounded-md bg-amber-600/90 text-white text-xs font-bold tracking-wider uppercase shadow-sm">
+              ★ {t('menu.popular')}
+            </span>
+          )}
+
+          {dish.spicyLevel && dish.spicyLevel > 0 && (
+            <span className="px-2 py-0.5 rounded-md bg-red-900/80 text-red-100 text-xs font-bold border border-red-500/30">
+              {'🌶️'.repeat(dish.spicyLevel)}
+            </span>
+          )}
         </div>
 
-        {/* Content Body: Name & Description & Ingredients */}
-        <div className="p-6 sm:p-8 space-y-4">
-          {/* Title & Price Header */}
-          <div className={`flex items-baseline justify-between gap-3 border-b pb-4 ${
-            isLight ? 'border-[#E5DDCF]' : 'border-[#1c1c1c]'
-          }`}>
-            <div>
-              <div className="flex items-center gap-2">
-                {dish.code && (
-                  <span className={`text-base sm:text-lg font-mono font-bold ${
-                    isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'
-                  }`}>
-                    #{dish.code}
-                  </span>
-                )}
-                <h3 className={`font-serif-heading text-xl sm:text-2xl font-bold ${
-                  isLight ? 'text-[#1C1917]' : 'text-[#faf6ee]'
-                }`}>
-                  {dishName}
-                </h3>
-              </div>
-              <p className={`text-xs uppercase tracking-widest font-bold mt-1 ${
-                isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'
-              }`}>
-                {dish.cuisine === 'chinese' ? '🥡 Chinese Cuisine' : '🍣 Japanese / Sushi'}
-              </p>
-            </div>
-            <div className={`text-2xl font-bold font-serif-heading flex-shrink-0 ${
+        {/* Title & Price */}
+        <div className={`border-b pb-4 mb-4 ${
+          isLight ? 'border-[#E5DDCF]' : 'border-[#222222]'
+        }`}>
+          <div className="flex justify-between items-start gap-4">
+            <h3 className={`font-serif-heading text-xl sm:text-2xl font-bold leading-tight ${
+              isLight ? 'text-[#1C1917]' : 'text-[#faf6ee]'
+            }`}>
+              {dishName}
+            </h3>
+            <span className={`text-2xl font-bold font-mono whitespace-nowrap ${
               isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'
             }`}>
               €{dish.price.toFixed(2)}
-            </div>
+            </span>
           </div>
+        </div>
 
-          {/* Description */}
+        {/* Description */}
+        <div className="space-y-4">
           <p className={`text-sm sm:text-base font-light leading-relaxed ${
             isLight ? 'text-[#3E3830]' : 'text-[#cccccc]'
           }`}>
             {dishDesc}
           </p>
+
+          {/* Ingredients list if present */}
+          {ingredients && ingredients.length > 0 && (
+            <div className="space-y-1.5 pt-2">
+              <h4 className={`text-xs font-bold uppercase tracking-wider ${
+                isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'
+              }`}>
+                {isGreek ? 'Κύρια Συστατικά' : 'Key Ingredients'}
+              </h4>
+              <div className="flex flex-wrap gap-1.5">
+                {ingredients.map((ing, i) => (
+                  <span 
+                    key={i} 
+                    className={`text-xs px-2.5 py-1 rounded-md border ${
+                      isLight 
+                        ? 'bg-[#FAF6F0] text-[#5A5248] border-[#C8BCA8]' 
+                        : 'bg-[#141414] text-[#a8a196] border-[#2c2c2c]'
+                    }`}
+                  >
+                    {ing}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Dietary Tags if present */}
+          {dish.dietary && dish.dietary.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {dish.dietary.map((d, i) => (
+                <span 
+                  key={i}
+                  className={`text-[11px] px-2 py-0.5 rounded font-medium ${
+                    isLight 
+                      ? 'bg-[#EAE2D5] text-[#6B6154]' 
+                      : 'bg-[#1b1b1b] text-[#888888]'
+                  }`}
+                >
+                  ✓ {d}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

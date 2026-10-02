@@ -45,7 +45,7 @@ function MainApp() {
           onExploreMenu={() => scrollToSection('menu')}
         />
 
-        {/* 2. Complete Interactive Dining Menu (Photo, Name & Description) */}
+        {/* 2. Complete Interactive Dining Menu (Code, Name, Price & Description) */}
         <MenuSection
           onSelectDish={(item) => setSelectedDish(item)}
         />

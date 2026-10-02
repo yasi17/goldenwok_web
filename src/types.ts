@@ -26,7 +26,7 @@ export interface MenuItem {
   code?: string;
   name: string;
   nameEl?: string;
-  chineseName: string;
+  chineseName?: string;
   category: MenuCategory;
   cuisine?: 'chinese' | 'japanese';
   price: number;

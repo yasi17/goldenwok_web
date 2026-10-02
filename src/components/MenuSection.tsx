@@ -129,7 +129,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
               }`}
             >
               <span>🥡 {isGreek ? 'Κινέζικο Μενού' : 'Chinese Menu'}</span>
-              <span className="font-chinese text-xs opacity-75">中餐</span>
             </button>
             <button
               id="tab-cuisine-japanese"
@@ -148,7 +147,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
               }`}
             >
               <span>🍣 {isGreek ? 'Sushi & Ιαπωνικό' : 'Japanese & Sushi'}</span>
-              <span className="font-chinese text-xs opacity-75">日料</span>
             </button>
           </div>
         </motion.div>
@@ -224,7 +222,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {filteredItems.map((item, index) => {
               const name = isGreek && item.nameEl ? item.nameEl : item.name;
               const description = isGreek && item.descriptionEl ? item.descriptionEl : item.description;
@@ -233,92 +231,92 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
                 <motion.div
                   key={item.id}
                   id={`dish-card-${item.id}`}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-30px" }}
-                  transition={{ duration: 0.4, delay: (index % 6) * 0.04 }}
-                  className={`group relative rounded-xl sm:rounded-2xl border transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl flex flex-col justify-between overflow-hidden cursor-pointer ${
+                  viewport={{ once: true, margin: "-20px" }}
+                  transition={{ duration: 0.35, delay: (index % 6) * 0.03 }}
+                  className={`group relative rounded-xl border p-4 sm:p-5 transition-all duration-200 hover:-translate-y-0.5 shadow-sm hover:shadow-md flex flex-col justify-between cursor-pointer ${
                     isLight 
                       ? 'bg-[#FAF6EE] border-[#C8BCA8]/60 hover:border-[#8A6310]' 
-                      : 'bg-[#0c0c0c] border-[#d4af37]/25 hover:border-[#d4af37]'
+                      : 'bg-[#0d0d0d] border-[#d4af37]/25 hover:border-[#d4af37]'
                   }`}
                   onClick={() => onSelectDish(item)}
                 >
-                  {/* Item Image */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-black/20 transform-gpu">
-                    <img 
-                      src={item.imageUrl} 
-                      alt={name}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 transform-gpu"
-                    />
-                    
-                    {/* Dark gradient shadow */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                  <div className="space-y-2.5">
+                    {/* Header Row: Dish Code & Special Badges on Left, Price on Right */}
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {item.code && (
+                          <span className={`px-2 py-0.5 rounded font-mono text-xs font-black tracking-wider shadow-sm ${
+                            isLight 
+                              ? 'bg-[#EAE2D5] text-[#8A6310] border border-[#8A6310]/30' 
+                              : 'bg-[#1a1a1a] text-[#fbf5b7] border border-[#d4af37]/50'
+                          }`}>
+                            #{item.code}
+                          </span>
+                        )}
 
-                    {/* Dish Number Code Badge (e.g. #01, #46, #121) */}
-                    {item.code && (
-                      <span className="absolute top-2.5 left-3 px-2 py-0.5 rounded-lg bg-black/80 border border-[#d4af37]/70 text-[#fbf5b7] font-mono text-xs font-black tracking-wider shadow-md backdrop-blur-sm">
-                        #{item.code}
-                      </span>
-                    )}
+                        {item.isChefSpecial && (
+                          <span className="px-2 py-0.5 rounded-md bg-[#8A6310] text-[#fbf5b7] text-[10px] font-bold tracking-wider uppercase flex items-center space-x-1 shadow-sm">
+                            <Sparkles className="w-2.5 h-2.5" />
+                            <span>{t('menu.chefSpecial')}</span>
+                          </span>
+                        )}
 
-                    {/* Chinese Characters Floating Watermark */}
-                    <span className="absolute top-2.5 right-3 font-chinese text-xl sm:text-2xl text-[#d4af37]/90 select-none drop-shadow-md">
-                      {item.chineseName}
-                    </span>
+                        {item.isPopular && (
+                          <span className="px-2 py-0.5 rounded-md bg-amber-600/90 text-white text-[10px] font-bold tracking-wider uppercase shadow-sm">
+                            ★ {t('menu.popular')}
+                          </span>
+                        )}
 
-                    {/* Special Badges */}
-                    <div className="absolute bottom-2.5 left-3 flex flex-wrap gap-1">
-                      {item.isChefSpecial && (
-                        <span className="px-2 py-0.5 rounded-md bg-[#8A6310] text-[#fbf5b7] text-[10px] font-bold tracking-wider uppercase flex items-center space-x-1 shadow-sm">
-                          <Sparkles className="w-2.5 h-2.5" />
-                          <span>{t('menu.chefSpecial')}</span>
-                        </span>
-                      )}
-                      {item.isPopular && (
-                        <span className="px-2 py-0.5 rounded-md bg-amber-600/90 text-white text-[10px] font-bold tracking-wider uppercase shadow-sm">
-                          ★ {t('menu.popular')}
-                        </span>
-                      )}
-                      {item.spicyLevel && item.spicyLevel > 0 && (
-                        <span className="px-2 py-0.5 rounded-md bg-red-900/90 text-red-100 text-[10px] font-bold tracking-wider uppercase shadow-sm">
-                          {'🌶️'.repeat(item.spicyLevel)}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Quick Preview Hover Button */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30 backdrop-blur-[2px]">
-                      <span className="p-2.5 rounded-full bg-black/80 border border-[#d4af37]/60 text-[#fbf5b7] shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                        <Eye className="w-5 h-5" />
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content Container */}
-                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-2">
-                    <div className="space-y-1.5">
-                      <div className="flex justify-between items-start gap-2">
-                        <h3 className={`font-serif-heading text-base sm:text-lg font-bold transition-colors line-clamp-2 ${
-                          isLight 
-                            ? 'text-[#1C1917] group-hover:text-[#8A6310]' 
-                            : 'text-[#FAF6EE] group-hover:text-[#d4af37]'
-                        }`}>
-                          {name}
-                        </h3>
-                        <span className="font-mono font-bold text-base sm:text-lg text-[#8A6310] dark:text-[#d4af37] whitespace-nowrap">
-                          €{item.price.toFixed(2)}
-                        </span>
+                        {item.spicyLevel && item.spicyLevel > 0 && (
+                          <span className="px-1.5 py-0.5 rounded-md bg-red-900/80 text-red-100 text-[10px] font-bold tracking-wider uppercase shadow-sm">
+                            {'🌶️'.repeat(item.spicyLevel)}
+                          </span>
+                        )}
                       </div>
 
-                      <p className={`text-xs line-clamp-2 leading-relaxed ${
-                        isLight ? 'text-[#574F44]' : 'text-[#9E9589]'
+                      <span className={`font-mono font-bold text-base sm:text-lg whitespace-nowrap ${
+                        isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'
                       }`}>
-                        {description}
-                      </p>
+                        €{item.price.toFixed(2)}
+                      </span>
                     </div>
+
+                    {/* Dish Name */}
+                    <h3 className={`font-serif-heading text-base sm:text-lg font-bold leading-snug transition-colors ${
+                      isLight 
+                        ? 'text-[#1C1917] group-hover:text-[#8A6310]' 
+                        : 'text-[#FAF6EE] group-hover:text-[#d4af37]'
+                    }`}>
+                      {name}
+                    </h3>
+
+                    {/* Description */}
+                    <p className={`text-xs sm:text-sm font-light leading-relaxed line-clamp-3 ${
+                      isLight ? 'text-[#574F44]' : 'text-[#9E9589]'
+                    }`}>
+                      {description}
+                    </p>
+                  </div>
+
+                  {/* Card bottom: Dietary tags if any, and view details prompt */}
+                  <div className="mt-3 pt-2.5 border-t border-dashed border-stone-300 dark:border-stone-800 flex justify-between items-center text-[11px]">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {item.dietary && item.dietary.slice(0, 2).map((d, i) => (
+                        <span key={i} className={`text-[10px] px-1.5 py-0.5 rounded ${
+                          isLight ? 'bg-[#EAE2D5]/70 text-[#6B6154]' : 'bg-[#181818] text-[#888888]'
+                        }`}>
+                          {d}
+                        </span>
+                      ))}
+                    </div>
+                    <span className={`inline-flex items-center space-x-1 opacity-75 group-hover:opacity-100 transition-opacity ${
+                      isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'
+                    }`}>
+                      <span>{isGreek ? 'Λεπτομέρειες' : 'Details'}</span>
+                      <Eye className="w-3 h-3 ml-0.5" />
+                    </span>
                   </div>
                 </motion.div>
               );

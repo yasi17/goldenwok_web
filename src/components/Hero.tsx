@@ -245,19 +245,24 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Schedule lines */}
               <div className="space-y-1.5 text-xs sm:text-sm text-stone-200">
                 <div className="flex items-center space-x-2">
+                  <span className="w-24 sm:w-28 font-medium text-stone-100">{isGreek ? 'Τρίτη' : 'Tuesday'}</span>
+                  <span className="text-stone-300">19:00 - 23:00</span>
+                  <span className="font-bold text-[#fbf5b7] pl-2">16€</span>
+                </div>
+                <div className="flex items-center space-x-2">
                   <span className="w-24 sm:w-28 font-medium text-stone-100">{isGreek ? 'Τετάρτη' : 'Wednesday'}</span>
                   <span className="text-stone-300">19:00 - 23:00</span>
-                  <span className="font-bold text-[#fbf5b7] pl-2">15€</span>
+                  <span className="font-bold text-[#fbf5b7] pl-2">16€</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="w-24 sm:w-28 font-medium text-stone-100">{isGreek ? 'Πέμπτη' : 'Thursday'}</span>
                   <span className="text-stone-300">19:00 - 23:00</span>
-                  <span className="font-bold text-[#fbf5b7] pl-2">15€</span>
+                  <span className="font-bold text-[#fbf5b7] pl-2">16€</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="w-24 sm:w-28 font-medium text-stone-100">{isGreek ? 'Παρασκευή' : 'Friday'}</span>
                   <span className="text-stone-300">19:00 - 23:00</span>
-                  <span className="font-bold text-[#fbf5b7] pl-2">16€</span>
+                  <span className="font-bold text-[#fbf5b7] pl-2">17€</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="w-24 sm:w-28 font-medium text-stone-100">{isGreek ? 'Σάββατο' : 'Saturday'}</span>
@@ -269,6 +274,12 @@ export const Hero: React.FC<HeroProps> = ({
                   <span className="text-stone-300">13:30 - 19:00</span>
                   <span className="font-bold text-[#fbf5b7] pl-2">18€</span>
                 </div>
+              </div>
+
+              {/* Takeaway Box Highlight */}
+              <div className="py-1 px-2.5 rounded bg-black/40 border border-[#d4af37]/40 flex items-center justify-between text-xs text-[#fbf5b7] font-medium">
+                <span>🥡 {isGreek ? 'Takeaway Box (Πακέτο)' : 'Takeaway Box'}</span>
+                <span className="font-bold font-mono text-sm">{isGreek ? '7€ / κουτί' : '7€ / box'}</span>
               </div>
 
               {/* Kids & Reminder text */}
@@ -472,9 +483,8 @@ export const Hero: React.FC<HeroProps> = ({
                   }`}
                 >
                   {[
-                    '13:30', '14:00', '14:30', '15:00', '15:30', '16:00',
-                    '16:30', '17:00', '17:30', '18:00', '18:30', '19:00',
-                    '19:30', '20:00', '20:30', '21:00', '21:30', '22:00', '22:30'
+                    '13:00', '13:30', '14:00', '14:30',
+                    '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
                   ].map((slot) => (
                     <option key={slot} value={slot}>
                       {slot}

@@ -56,13 +56,13 @@ export const LocationAndHours: React.FC = () => {
             : 'Closed Today (Monday) • Doors reopen Tuesday at 13:00'
         );
       } else if (athensDay === 'Sun') {
-        // Sunday: 13:00 - 22:00
-        if (currentTimeDecimal >= 13.0 && currentTimeDecimal < 22.0) {
+        // Sunday: 13:00 - 21:00
+        if (currentTimeDecimal >= 13.0 && currentTimeDecimal < 21.0) {
           setIsOpen(true);
           setStatusMessage(
             isGreek
-              ? 'Ανοιχτά Τώρα • Σάλα, Μπουφές & Takeaway (έως τις 22:00)'
-              : 'Open Now • Full Dining, Buffet & Takeaway Service (until 22:00)'
+              ? 'Ανοιχτά Τώρα • Σάλα, Μπουφές & Takeaway (έως τις 21:00)'
+              : 'Open Now • Full Dining, Buffet & Takeaway Service (until 21:00)'
           );
         } else if (currentTimeDecimal < 13.0) {
           setIsOpen(false);
@@ -80,13 +80,17 @@ export const LocationAndHours: React.FC = () => {
           );
         }
       } else {
-        // Tuesday through Saturday: 13:00 - 23:00
-        if (currentTimeDecimal >= 13.0 && currentTimeDecimal < 23.0) {
+        // Tuesday through Saturday: 13:00 - 15:00 & 18:00 - 23:00
+        if (
+          (currentTimeDecimal >= 13.0 && currentTimeDecimal < 15.0) ||
+          (currentTimeDecimal >= 18.0 && currentTimeDecimal < 23.0)
+        ) {
+          const closingTime = currentTimeDecimal < 15.0 ? '15:00' : '23:00';
           setIsOpen(true);
           setStatusMessage(
             isGreek
-              ? 'Ανοιχτά Τώρα • Σάλα, Μπουφές & Takeaway (έως τις 23:00)'
-              : 'Open Now • Full Dining, Buffet & Takeaway Service (until 23:00)'
+              ? `Ανοιχτά Τώρα • Σάλα & Takeaway (έως τις ${closingTime})`
+              : `Open Now • Full Dining & Takeaway Service (until ${closingTime})`
           );
         } else if (currentTimeDecimal < 13.0) {
           setIsOpen(false);
@@ -95,12 +99,22 @@ export const LocationAndHours: React.FC = () => {
               ? 'Κλειστά Τώρα • Ανοίγουμε σήμερα στις 13:00'
               : 'Closed Now • Doors open today at 13:00'
           );
-        } else {
+        } else if (currentTimeDecimal >= 15.0 && currentTimeDecimal < 18.0) {
           setIsOpen(false);
           setStatusMessage(
             isGreek
-              ? 'Κλειστά για σήμερα • Ανοίγουμε αύριο στις 13:00'
-              : 'Closed for the Night • Doors open tomorrow at 13:00'
+              ? 'Μεσημβρινό διάλειμμα • Ανοίγουμε ξανά σήμερα στις 18:00'
+              : 'Midday Break • Doors reopen today at 18:00'
+          );
+        } else {
+          const nextDayText = athensDay === 'Sat'
+            ? (isGreek ? 'Ανοίγουμε αύριο (Κυριακή) στις 13:00' : 'Doors open tomorrow (Sunday) at 13:00')
+            : (isGreek ? 'Ανοίγουμε αύριο στις 13:00' : 'Doors open tomorrow at 13:00');
+          setIsOpen(false);
+          setStatusMessage(
+            isGreek
+              ? `Κλειστά για σήμερα • ${nextDayText}`
+              : `Closed for the Night • ${nextDayText}`
           );
         }
       }
@@ -204,16 +218,21 @@ export const LocationAndHours: React.FC = () => {
                     {isGreek ? 'Δευτέρα' : 'Monday'}
                   </span>
                   <span className={`text-right font-medium ${isLight ? 'text-red-700' : 'text-red-400'}`}>
-                    {isGreek ? 'Κλειστά' : 'Closed'}
+                    {isGreek ? 'ΚΛΕΙΣΤΑ' : 'CLOSED'}
                   </span>
                 </div>
 
                 <div className={`flex justify-between py-2 border-b ${isLight ? 'border-[#E5DDCF]' : 'border-[#1a1a1a]'}`}>
-                  <span className={`font-bold ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>
-                    {isGreek ? 'Τρίτη' : 'Tuesday'}
-                  </span>
-                  <span className={`text-right ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
-                    13:00 – 23:00
+                  <div>
+                    <span className={`font-bold ${isLight ? 'text-[#1C1917]' : 'text-[#e0e0e0]'}`}>
+                      {isGreek ? 'Τρίτη' : 'Tuesday'}
+                    </span>
+                    <span className="block text-[11px] text-[#8A6310] dark:text-[#d4af37]">
+                      {isGreek ? 'Μπουφές: 19:00 – 23:00 (16€)' : 'Buffet: 19:00 – 23:00 (16€)'}
+                    </span>
+                  </div>
+                  <span className={`text-right font-medium ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
+                    13:00 – 15:00 & 18:00 – 23:00
                   </span>
                 </div>
 
@@ -223,11 +242,11 @@ export const LocationAndHours: React.FC = () => {
                       {isGreek ? 'Τετάρτη' : 'Wednesday'}
                     </span>
                     <span className="block text-[11px] text-[#8A6310] dark:text-[#d4af37]">
-                      {isGreek ? 'Μπουφές: 19:00 – 23:00 (15€)' : 'Buffet: 19:00 – 23:00 (15€)'}
+                      {isGreek ? 'Μπουφές: 19:00 – 23:00 (16€)' : 'Buffet: 19:00 – 23:00 (16€)'}
                     </span>
                   </div>
-                  <span className={`text-right ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
-                    13:00 – 23:00
+                  <span className={`text-right font-medium ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
+                    13:00 – 15:00 & 18:00 – 23:00
                   </span>
                 </div>
 
@@ -237,11 +256,11 @@ export const LocationAndHours: React.FC = () => {
                       {isGreek ? 'Πέμπτη' : 'Thursday'}
                     </span>
                     <span className="block text-[11px] text-[#8A6310] dark:text-[#d4af37]">
-                      {isGreek ? 'Μπουφές: 19:00 – 23:00 (15€)' : 'Buffet: 19:00 – 23:00 (15€)'}
+                      {isGreek ? 'Μπουφές: 19:00 – 23:00 (16€)' : 'Buffet: 19:00 – 23:00 (16€)'}
                     </span>
                   </div>
-                  <span className={`text-right ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
-                    13:00 – 23:00
+                  <span className={`text-right font-medium ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
+                    13:00 – 15:00 & 18:00 – 23:00
                   </span>
                 </div>
 
@@ -251,11 +270,11 @@ export const LocationAndHours: React.FC = () => {
                       {isGreek ? 'Παρασκευή' : 'Friday'}
                     </span>
                     <span className="block text-[11px] text-[#8A6310] dark:text-[#d4af37]">
-                      {isGreek ? 'Μπουφές: 19:00 – 23:00 (16€)' : 'Buffet: 19:00 – 23:00 (16€)'}
+                      {isGreek ? 'Μπουφές: 19:00 – 23:00 (17€)' : 'Buffet: 19:00 – 23:00 (17€)'}
                     </span>
                   </div>
-                  <span className={`text-right ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
-                    13:00 – 23:00
+                  <span className={`text-right font-medium ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
+                    13:00 – 15:00 & 18:00 – 23:00
                   </span>
                 </div>
 
@@ -268,8 +287,8 @@ export const LocationAndHours: React.FC = () => {
                       {isGreek ? 'Μπουφές: 19:00 – 23:00 (18€)' : 'Buffet: 19:00 – 23:00 (18€)'}
                     </span>
                   </div>
-                  <span className={`text-right ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
-                    13:00 – 23:00
+                  <span className={`text-right font-medium ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
+                    13:00 – 15:00 & 18:00 – 23:00
                   </span>
                 </div>
 
@@ -282,10 +301,23 @@ export const LocationAndHours: React.FC = () => {
                       {isGreek ? 'Μπουφές: 13:30 – 19:00 (18€)' : 'Buffet: 13:30 – 19:00 (18€)'}
                     </span>
                   </div>
-                  <span className={`text-right ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
-                    13:00 – 22:00
+                  <span className={`text-right font-medium ${isLight ? 'text-[#574F44]' : 'text-[#a0a0a0]'}`}>
+                    13:00 – 21:00
                   </span>
                 </div>
+              </div>
+
+              {/* Takeaway Box Info */}
+              <div className={`pt-3 border-t flex items-center justify-between text-xs rounded p-2.5 ${
+                isLight ? 'bg-[#FAF6F0] border border-[#C8BCA8]' : 'bg-[#141414] border border-[#d4af37]/30'
+              }`}>
+                <span className={`font-semibold flex items-center space-x-1.5 ${isLight ? 'text-[#1C1917]' : 'text-[#fbf5b7]'}`}>
+                  <span>🥡</span>
+                  <span>{isGreek ? 'Takeaway Box (Πακέτο):' : 'Takeaway Box:'}</span>
+                </span>
+                <span className={`font-bold font-mono text-sm ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>
+                  {isGreek ? '7€ / κουτί' : '7€ / box'}
+                </span>
               </div>
             </div>
 

@@ -211,29 +211,27 @@ export const TakeoutDrawer: React.FC<TakeoutDrawerProps> = ({
                         const dishName = isGreek && cartItem.item.nameEl ? cartItem.item.nameEl : cartItem.item.name;
 
                         return (
-                          <div key={idx} className={`flex gap-3 items-start p-3 rounded border ${
+                          <div key={idx} className={`p-3 rounded border ${
                             isLight ? 'bg-[#FFFFFF] border-[#C8BCA8]' : 'bg-[#111111] border-[#222222]'
                           }`}>
-                            <img
-                              src={cartItem.item.imageUrl}
-                              alt={dishName}
-                              loading="lazy"
-                              decoding="async"
-                              className="w-14 h-14 object-cover rounded flex-shrink-0"
-                            />
                             <div className="flex-1 min-w-0">
                               <div className="flex items-start justify-between gap-1">
-                                <h4 className={`text-xs font-bold truncate ${isLight ? 'text-[#1C1917]' : 'text-[#faf6ee]'}`}>
-                                  {dishName}
-                                </h4>
-                                <span className={`text-xs font-bold font-mono ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>
+                                <div className="flex items-center gap-1.5 min-w-0">
+                                  {cartItem.item.code && (
+                                    <span className={`text-[10px] font-mono font-bold px-1.5 py-0.2 rounded flex-shrink-0 ${
+                                      isLight ? 'bg-[#EAE2D5] text-[#8A6310]' : 'bg-[#222222] text-[#fbf5b7]'
+                                    }`}>
+                                      #{cartItem.item.code}
+                                    </span>
+                                  )}
+                                  <h4 className={`text-xs font-bold truncate ${isLight ? 'text-[#1C1917]' : 'text-[#faf6ee]'}`}>
+                                    {dishName}
+                                  </h4>
+                                </div>
+                                <span className={`text-xs font-bold font-mono whitespace-nowrap ml-2 ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>
                                   €{(cartItem.item.price * cartItem.quantity).toFixed(2)}
                                 </span>
                               </div>
-
-                              <p className={`font-chinese text-[11px] ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>
-                                {cartItem.item.chineseName}
-                              </p>
 
                               {cartItem.spicePreference && (
                                 <p className={`text-[10px] flex items-center space-x-1 mt-0.5 ${isLight ? 'text-[#6B6154]' : 'text-[#9e9487]'}`}>

@@ -17,9 +17,9 @@ export const RESTAURANT_INFO = {
   instagram: 'https://www.instagram.com/goldenwok_neasmyrni/',
   instagramHandle: '@goldenwok_neasmyrni',
   hours: {
-    tuesdayToSaturday: '13:00 – 23:00',
-    sunday: '13:00 – 22:00',
-    monday: 'Closed'
+    monday: 'Κλειστά / Closed',
+    tuesdayToSaturday: '13:00 – 15:00 & 18:00 – 23:00',
+    sunday: '13:00 – 21:00'
   },
   established: 1998,
   awards: [
