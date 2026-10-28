@@ -8,13 +8,13 @@ import { LocationAndHours } from './components/LocationAndHours';
 import { NewsletterAndFooter } from './components/NewsletterAndFooter';
 import { DishDetailModal } from './components/DishDetailModal';
 import { MenuItem } from './types';
-import { Calendar } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { LanguageProvider, useLanguage } from './LanguageContext';
 
 function MainApp() {
   const { theme } = useTheme();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const [selectedDish, setSelectedDish] = useState<MenuItem | null>(null);
 
   const scrollToSection = (sectionId: string) => {
@@ -33,14 +33,12 @@ function MainApp() {
         : 'bg-black text-[#f0f0f0] selection:bg-[#d4af37] selection:text-black'
     }`}>
       
-      {/* Main Navigation Header with Theme Toggle & Language Switcher to the right of Reserve Table */}
-      <Navbar
-        onOpenReservation={() => scrollToSection('reservations')}
-      />
+      {/* Main Navigation Header */}
+      <Navbar />
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        {/* 1. Cinematic Hero Section with Buffet Schedule, Order Now Delivery bar & Table Reservation Bar */}
+        {/* 1. Cinematic Hero Section with Buffet Schedule & Order Now Delivery bar */}
         <Hero
           onExploreMenu={() => scrollToSection('menu')}
         />
@@ -62,7 +60,6 @@ function MainApp() {
 
       {/* Footer */}
       <NewsletterAndFooter
-        onOpenReservation={() => scrollToSection('reservations')}
         onExploreMenu={() => scrollToSection('menu')}
       />
 
@@ -72,15 +69,15 @@ function MainApp() {
         onClose={() => setSelectedDish(null)}
       />
 
-      {/* Floating Mobile Quick Action Pill */}
+      {/* Floating Mobile Quick Call Action Pill */}
       <div className="md:hidden fixed bottom-4 left-4 right-4 z-30 flex">
-        <button
-          onClick={() => scrollToSection('reservations')}
-          className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black font-bold text-xs uppercase tracking-wider shadow-2xl flex items-center justify-center space-x-1.5 border border-[#d4af37]/60 cursor-pointer"
+        <a
+          href="tel:+302109345137"
+          className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black font-bold text-xs uppercase tracking-wider shadow-2xl flex items-center justify-center space-x-2 border border-[#d4af37]/60 cursor-pointer"
         >
-          <Calendar className="w-3.5 h-3.5" />
-          <span>{t('nav.reserve')}</span>
-        </button>
+          <Phone className="w-3.5 h-3.5 text-black" />
+          <span>{language === 'el' ? 'Καλέστε μας: 210 934 5137' : 'Call us: 210 934 5137'}</span>
+        </a>
       </div>
     </div>
   );

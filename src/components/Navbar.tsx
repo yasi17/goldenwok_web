@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Calendar, 
+  Phone, 
   Menu as MenuIcon, 
   X, 
   ChevronRight,
@@ -12,14 +12,11 @@ import { useTheme } from '../ThemeContext';
 import { useLanguage } from '../LanguageContext';
 
 interface NavbarProps {
-  onOpenReservation: () => void;
   onOpenCart?: () => void;
   cartCount?: number;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({
-  onOpenReservation,
-}) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   const { theme, toggleTheme } = useTheme();
   const isLight = theme === 'light';
   const { language, toggleLanguage, t } = useLanguage();
@@ -122,15 +119,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </button>
 
-            {/* Reserve Table Button (Hidden on mobile as bottom floating action button is present) */}
-            <button
-              id="nav-reserve-btn"
-              onClick={onOpenReservation}
+            {/* Call Us Button */}
+            <a
+              id="nav-call-btn"
+              href="tel:+302109345137"
               className="hidden md:flex px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-sm bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black text-xs sm:text-sm font-bold tracking-widest uppercase shadow-lg shadow-black/20 hover:brightness-110 items-center space-x-1.5 sm:space-x-2 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
-              <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-black" />
-              <span>{t('nav.reserve')}</span>
-            </button>
+              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-black" />
+              <span>210 934 5137</span>
+            </a>
 
             {/* Language Switcher Toggle Button (Placed directly to the RIGHT of Reserve Table) */}
             <button
@@ -243,16 +240,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             <div className="pt-6">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenReservation();
-                }}
+              <a
+                href="tel:+302109345137"
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full py-4 rounded-sm bg-gradient-to-r from-[#b38728] via-[#fbf5b7] to-[#d4af37] text-black font-bold uppercase tracking-widest text-sm shadow-xl flex items-center justify-center space-x-2"
               >
-                <Calendar className="w-4 h-4 text-black" />
-                <span>{t('nav.reserve')}</span>
-              </button>
+                <Phone className="w-4 h-4 text-black" />
+                <span>210 934 5137</span>
+              </a>
             </div>
           </div>
 

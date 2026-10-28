@@ -8,14 +8,10 @@ import { useTheme } from '../ThemeContext';
 import { useLanguage } from '../LanguageContext';
 
 interface NewsletterAndFooterProps {
-  onOpenReservation: () => void;
-  onExploreMenu: () => void;
+  onExploreMenu?: () => void;
 }
 
-export const NewsletterAndFooter: React.FC<NewsletterAndFooterProps> = ({
-  onOpenReservation,
-  onExploreMenu
-}) => {
+export const NewsletterAndFooter: React.FC<NewsletterAndFooterProps> = () => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const { language, t } = useLanguage();
@@ -126,8 +122,8 @@ export const NewsletterAndFooter: React.FC<NewsletterAndFooterProps> = ({
         }`}>
           <p>© {new Date().getFullYear()} 金鼎 GoldenWok Restaurant. {t('footer.rights')}</p>
           <div className="flex items-center space-x-6">
-            <a href="#reservations" onClick={onOpenReservation} className={isLight ? 'hover:text-[#8A6310]' : 'hover:text-[#d4af37]'}>{t('nav.reserve')}</a>
             <a href="#menu" className={isLight ? 'hover:text-[#8A6310]' : 'hover:text-[#d4af37]'}>{t('nav.menu')}</a>
+            <a href="#location" className={isLight ? 'hover:text-[#8A6310]' : 'hover:text-[#d4af37]'}>{t('nav.contact')}</a>
             <span className={`font-chinese font-bold text-sm ${isLight ? 'text-[#8A6310]' : 'text-[#d4af37]'}`}>金鼎 • 恭候光临</span>
           </div>
         </div>
